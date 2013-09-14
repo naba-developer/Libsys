@@ -1,0 +1,23 @@
+#Settings Changed
+#Tue Sep 08 22:01:33 IST 2009
+Font_Color_Blue=0
+Background_Color_Blue=85
+Save_Lock/Open_Log=1
+Font_Style=0
+Save_Data_Delete_Log=1
+Interface=Windows
+Save_Data_Entry_Log=1
+Save_System_Log_Clearance_Log=1
+Font_Face=Tahoma
+Save_Data_Search_Log=1
+Background_Color_Green=248
+Save_Data_Update_Log=1
+Font_Color_Red=0
+Save_Log_In/Log_Off_Log=1
+Font_Size=11
+Save_Database_Query_Log=1
+Foreground_Color_Blue=161
+Font_Color_Green=0
+Foreground_Color_Red=202
+Background_Color_Red=250
+Foreground_Color_Green=233

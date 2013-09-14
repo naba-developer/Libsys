@@ -1,0 +1,227 @@
+package libsys.listeners;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.util.Date;
+import java.util.StringTokenizer;
+import javax.swing.JOptionPane;
+import libsys.general.LIBSYSSystem;
+import libsys.general.utilities.SystemLogEvent;
+
+public class ReturnsPanelTransmitButtonListener implements ActionListener
+{
+		LIBSYSSystem LibrarySystem;
+		
+		int  result;
+		ResultSet resultSet ;
+		
+		public ReturnsPanelTransmitButtonListener(LIBSYSSystem LibrarySystem)
+		{
+				this.LibrarySystem = LibrarySystem;
+		}
+		
+		public void actionPerformed(ActionEvent ae)
+		{
+				if(ae.getActionCommand().equals("Transmit Transaction"))
+				{
+						String accnum=LibrarySystem.FrameItems.returnPanelItems.bookaccnumber_txt.getText();
+						String returndate =LibrarySystem.FrameItems.returnPanelItems.bookreturndate_btn.getText();
+						
+						if(accnum == null || accnum.length() == 0)
+						{
+								return;
+						}
+						
+						if(checkReturnDate() == false)
+						{
+								JOptionPane.showMessageDialog(LibrarySystem.FrameList.NavigationFrame, "Enter a valid Return Date. The return date cannot be earlier than the borrow date");
+								return;
+						}
+						
+						String query1 = "UPDATE BOOKS SET Book_availaible='yes'where Book_id = '"+accnum + "'";
+						
+						String query2 = "UPDATE TRANSACTIONS SET Return_date= str_to_date('"+returndate+"','%d-%m-%Y')  where (Book_id='"+accnum+"' and Return_date  is null)";
+						 
+						String amt;
+						String paid;
+						String query4, time;
+								
+						try
+						{					
+								if(checkFine() == true)
+								{
+										amt = LibrarySystem.FrameItems.returnPanelItems.fineamount_txt.getText();
+										
+										if(LibrarySystem.FrameItems.returnPanelItems.finepaid_checkbox.isSelected())
+										{
+												  paid = "Paid";
+										}
+										else
+										{
+												  paid = "Not Paid";
+										}
+										
+										String reason = LibrarySystem.FrameItems.returnPanelItems.finereason_textarea.getText();
+										
+										if(reason == null || reason.length() == 0)
+										{
+												reason = "Not Specified";
+										}
+										
+										time = new Long(System.currentTimeMillis()).toString();
+										
+										String borroweraccnum=LibrarySystem.FrameItems.returnPanelItems.borrowernumber_txt.getText();
+										
+										if(LibrarySystem.FrameItems.returnPanelItems.imposefine_checkbox.isSelected())
+										{
+												query4 = "INSERT INTO FINES values('" + time + "', '" + borroweraccnum + "', '" + amt + "','" + paid + "', '" + reason + "')";
+												
+												int returnValue = LibrarySystem.DatabaseManager.executeOtherQuery(query4);
+										
+												if(returnValue == -1 || returnValue == -2)
+												{
+														return;
+												}
+										}
+										
+										result = LibrarySystem.DatabaseManager.executeOtherQuery(query1);
+										
+										if(result == -1 || result == -2)
+										{
+												return;
+										}
+										
+										result = LibrarySystem.DatabaseManager.executeOtherQuery(query2);
+										
+										if(result == -1 || result == -2)
+										{
+												return;
+										}
+										
+										JOptionPane.showMessageDialog(LibrarySystem.FrameList.NavigationFrame, "The Book has been returned successfully");
+										LibrarySystem.FrameItems.returnPanelItems.returnstransmit_btn.setEnabled(false);
+										LibrarySystem.DatabaseManager.closeConnection();
+										
+										Date d = new Date();
+										SystemLogEvent event = new SystemLogEvent();
+										
+										event.EventID = 4;
+										event.EventName = "Loaned Book : " + accnum + " returned by Borrower : " + LibrarySystem.FrameItems.returnPanelItems.borrowernumber_txt;
+										event.EventTime = d.toString();
+										event.Username = LibrarySystem.current;
+										
+										LibrarySystem.systemLogManager.addEventToLogFile(event, LibrarySystem.SystemLogFile);
+										
+										return;
+								}						
+								
+						}
+						catch(Exception e)
+						{
+								e.printStackTrace();
+						}
+				}
+				
+				if(ae.getActionCommand().equals("Print Transaction"))
+				{
+						String text = LibrarySystem.dataFormatter.getFormattedReturnTransactionData();
+						
+						text = LibrarySystem.dataFormatter.getHTMLFormattedData("", "", text);
+						
+						text = LibrarySystem.dataFormatter.getHTMLFormattedData("", "", text);
+						
+						LibrarySystem.FrameItems.printPreviewFrameItems.EditorPane.setText(text);
+						
+						LibrarySystem.FrameItems.printPreviewFrameItems.preview_scrollpane.setViewportView(LibrarySystem.FrameItems.printPreviewFrameItems.EditorPane);
+						LibrarySystem.FrameItems.printPreviewFrameItems.Component = "EditorPane";
+						
+						LibrarySystem.FrameList.PrintPreviewFrame.setVisible(true);
+						
+						LibrarySystem.VisibleFrameList.add(LibrarySystem.FrameList.PrintPreviewFrame);
+				}
+		}
+		
+		private boolean checkReturnDate()
+		{
+				String BorrowDate = LibrarySystem.FrameItems.returnPanelItems.bookborrowdate_txt.getText();
+				String ReturnDate = LibrarySystem.FrameItems.returnPanelItems.bookreturndate_btn.getText();
+				
+				StringTokenizer BorrowDateTokenizer = new StringTokenizer(BorrowDate, "-");
+				StringTokenizer ReturnDateTokenizer = new StringTokenizer(ReturnDate, "-");
+				
+				int BorrowDateDate = Integer.parseInt(BorrowDateTokenizer.nextToken());
+				int BorrowDateMonth = Integer.parseInt(BorrowDateTokenizer.nextToken());
+				int BorrowDateYear = Integer.parseInt(BorrowDateTokenizer.nextToken());
+				
+				int ReturnDateDate = Integer.parseInt(ReturnDateTokenizer.nextToken());
+				int ReturnDateMonth = Integer.parseInt(ReturnDateTokenizer.nextToken());
+				int ReturnDateYear = Integer.parseInt(ReturnDateTokenizer.nextToken());
+				
+				if(ReturnDateYear > BorrowDateYear)
+				{
+						return true;
+				}
+				else if(ReturnDateYear == BorrowDateYear)
+				{
+						if(ReturnDateMonth > BorrowDateMonth)
+						{
+								return true;
+						}
+						else if(ReturnDateMonth == BorrowDateMonth)
+						{
+								if(ReturnDateDate >= BorrowDateDate)
+								{
+										return true;
+								}
+								else
+								{
+										return false;
+								}
+						}
+						else
+						{
+								return false;
+						}
+				}
+				else
+				{
+						return false;
+				}
+		}
+		
+		private boolean checkFine()
+		{
+				if(LibrarySystem.FrameItems.returnPanelItems.imposefine_checkbox.isSelected())
+				{						
+						if(LibrarySystem.FrameItems.returnPanelItems.fineamount_txt.getText() == null || LibrarySystem.FrameItems.returnPanelItems.fineamount_txt.getText().length() == 0)
+						{
+								JOptionPane.showMessageDialog(LibrarySystem.FrameList.NavigationFrame, "Enter the Fine Amount");
+								
+								return false;								
+						}
+						
+						try
+						{
+								Double.parseDouble(LibrarySystem.FrameItems.returnPanelItems.fineamount_txt.getText());
+						}
+						catch(Exception ex)
+						{
+								JOptionPane.showMessageDialog(LibrarySystem.FrameList.NavigationFrame, "Enter a valid Fine Amount in figures. Do not type Rs/p etc.");
+								
+								return false;
+						}
+						
+						if(Double.parseDouble(LibrarySystem.FrameItems.returnPanelItems.fineamount_txt.getText()) <= 0.00)
+						{
+								JOptionPane.showMessageDialog(LibrarySystem.FrameList.NavigationFrame, "Enter a valid Fine Amount. Fine amount, if imposed, cannot be negative or zero.");
+								
+								return false;
+						}
+						
+						return true;						
+				}
+				
+				return true;
+		}
+}

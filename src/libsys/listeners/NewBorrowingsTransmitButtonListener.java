@@ -1,0 +1,168 @@
+package libsys.listeners;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.util.Date;
+import java.util.StringTokenizer;
+import javax.swing.JEditorPane;
+import javax.swing.JOptionPane;
+import libsys.general.BooksData;
+import libsys.general.BorrowersData;
+import libsys.general.LIBSYSSystem;
+import libsys.general.utilities.SystemLogEvent;
+
+public class NewBorrowingsTransmitButtonListener implements ActionListener
+{
+		LIBSYSSystem LibrarySystem;
+		int maxval=0;
+		ResultSet resultSet;
+		int result;
+		
+		public NewBorrowingsTransmitButtonListener(LIBSYSSystem LibrarySystem)
+		{
+				this.LibrarySystem = LibrarySystem;
+		}
+		
+		public void actionPerformed(ActionEvent ae)
+		{
+				if(ae.getActionCommand().equals("Transmit Transaction"))
+				{						
+						BooksData bookData = new BooksData();
+						BorrowersData borrowerData=new BorrowersData();	
+						
+						bookData.BookAccountNumber=LibrarySystem.FrameItems.borrowingPanelItems.bookaccnumber_txt.getText();
+								
+						borrowerData.BorrowerAccountNumber=LibrarySystem.FrameItems.borrowingPanelItems.borroweraccnumber_txt.getText();
+						
+						if(bookData.BookAccountNumber == null || bookData.BookAccountNumber.length() == 0)
+						{
+								return;
+						}
+						
+						if(borrowerData.BorrowerAccountNumber == null || borrowerData.BorrowerAccountNumber.length() == 0)
+						{
+								return;
+						}
+						
+						if(checkDate() == false)
+						{
+								JOptionPane.showMessageDialog(LibrarySystem.FrameList.NavigationFrame, "Error! Invalid combination of Borrow Date and Return Date. Due Date cannot le less than Borrow Date");
+								return;
+						}
+						
+						try
+						{							
+								String borrow_date=LibrarySystem.FrameItems.borrowingPanelItems.bookborrowdate_btn.getText();
+								String due_date=LibrarySystem.FrameItems.borrowingPanelItems.bookduedate_btn.getText();
+								
+								String query2="UPDATE BOOKS SET Book_availaible='No' where book_id='"+bookData.BookAccountNumber+"'";
+								String query3="INSERT INTO TRANSACTIONS VALUES('"+borrowerData.BorrowerAccountNumber+"','"+bookData.BookAccountNumber+"',str_to_date('"+borrow_date+"','%d-%m-%Y'),str_to_date('"+due_date+"','%d-%m-%Y'), null)";
+								
+								LibrarySystem.DatabaseManager.executeOtherQuery(query2);
+								
+								result = LibrarySystem.DatabaseManager.executeOtherQuery(query3);
+								
+								if(result == -2)
+								{
+										return;
+								}
+								
+								if(result !=-1)
+								{
+										JOptionPane.showMessageDialog(LibrarySystem.FrameList.NavigationFrame, " Transaction  uploaded successfully");
+										
+										LibrarySystem.FrameItems.borrowingPanelItems.borrowingtransmit_btn.setEnabled(false);
+										LibrarySystem.FrameItems.borrowingPanelItems.borrowingprint_btn.setEnabled(true);
+										
+										LibrarySystem.DatabaseManager.closeConnection();	
+										
+										Date d = new Date();
+										SystemLogEvent event = new SystemLogEvent();
+										
+										event.EventID = 4;
+										event.EventName = "New Book : " + bookData.BookAccountNumber + " loaned to Borrower : " + borrowerData.BorrowerAccountNumber;
+										event.EventTime = d.toString();
+										event.Username = LibrarySystem.current;
+										
+										LibrarySystem.systemLogManager.addEventToLogFile(event, LibrarySystem.SystemLogFile);
+										
+										return;
+								}
+								else
+								{
+										LibrarySystem.DatabaseManager.closeConnection();
+										return;					
+								}							
+						}
+						catch(Exception e)
+						{
+								e.printStackTrace();
+						}								
+				}
+				
+				if(ae.getActionCommand().equals("Print Transaction"))
+				{
+						LibrarySystem.systemResetter.resetPrintPreviewFrame();
+						
+						String text = LibrarySystem.dataFormatter.getFormattedBorrowingTransactionData();
+						
+						text = LibrarySystem.dataFormatter.getHTMLFormattedData("", "", text);
+						
+						text = LibrarySystem.dataFormatter.getHTMLFormattedData("", "", text);
+						
+						LibrarySystem.FrameItems.printPreviewFrameItems.EditorPane.setText(text);
+						
+						LibrarySystem.FrameItems.printPreviewFrameItems.preview_scrollpane.setViewportView(LibrarySystem.FrameItems.printPreviewFrameItems.EditorPane);
+						LibrarySystem.FrameItems.printPreviewFrameItems.Component = "EditorPane";
+						LibrarySystem.FrameList.PrintPreviewFrame.setVisible(true);
+						
+						LibrarySystem.VisibleFrameList.add(LibrarySystem.FrameList.PrintPreviewFrame);
+				}
+		}
+		
+		private boolean checkDate()
+		{
+				StringTokenizer BorrowDateTokenizer = new StringTokenizer(LibrarySystem.FrameItems.borrowingPanelItems.bookborrowdate_btn.getText(), "-");
+				StringTokenizer DueDateTokenizer = new StringTokenizer(LibrarySystem.FrameItems.borrowingPanelItems.bookduedate_btn.getText(), "-");
+				
+				int BorrowDateDate = Integer.parseInt(BorrowDateTokenizer.nextToken());
+				int BorrowDateMonth = Integer.parseInt(BorrowDateTokenizer.nextToken());
+				int BorrowDateYear = Integer.parseInt(BorrowDateTokenizer.nextToken());
+				
+				int DueDateDate = Integer.parseInt(DueDateTokenizer.nextToken());
+				int DueDateMonth = Integer.parseInt(DueDateTokenizer.nextToken());
+				int DueDateYear = Integer.parseInt(DueDateTokenizer.nextToken());
+				
+				if(DueDateYear > BorrowDateYear)
+				{
+						return true;
+				}
+				else if(DueDateYear == BorrowDateYear)
+				{
+						if(DueDateMonth > BorrowDateMonth)
+						{
+								return true;
+						}
+						else if(DueDateMonth == BorrowDateMonth)
+						{
+								if(DueDateDate >= BorrowDateDate)
+								{
+										return true;
+								}
+								else
+								{
+										return false;
+								}
+						}
+						else
+						{
+								return false;
+						}
+				}
+				else
+				{
+						return false;
+				}
+		}
+}

@@ -1,0 +1,52 @@
+package libsys.general.utilities;
+
+import java.awt.Color;
+import libsys.general.LIBSYSSystem;
+
+public class BackGroundColorChanger
+{
+		LIBSYSSystem LibrarySystem;
+		
+		public BackGroundColorChanger(LIBSYSSystem LibrarySystem)
+		{
+				this.LibrarySystem = LibrarySystem;
+		}
+		
+		public void setBackgroundColor(Color BackGroundColor)
+		{
+				setNavigationFrameBackground(BackGroundColor);
+				setSettingsFrameBackground( BackGroundColor);
+				setAccountsManagerFrameBackground(BackGroundColor);
+				setCalculatorFrameBackground( BackGroundColor);
+				 refreshFrameList();
+		}
+		
+		private void setNavigationFrameBackground(Color BackGroundColor)
+		{
+				LibrarySystem.FrameItems.navigationFrameItems.main_panel.setBackground(BackGroundColor);
+		}
+		
+		private void setSettingsFrameBackground(Color BackGroundColor)
+		{
+				LibrarySystem.FrameItems.settingsFrameItems.main_panel.setBackground(BackGroundColor);
+		}
+		
+		private void setAccountsManagerFrameBackground(Color BackGroundColor)
+		{
+				LibrarySystem.FrameItems.accountsManagerFrameItems.main_panel.setBackground(BackGroundColor);
+		}
+		
+		private void setCalculatorFrameBackground(Color BackGroundColor)
+		{
+				
+		}
+		
+		private void refreshFrameList()
+		{
+				LibrarySystem.FrameList.LoginFrame.repaint();
+				LibrarySystem.FrameList.NavigationFrame.repaint();
+				LibrarySystem.FrameList.CalculatorFrame.repaint();
+				LibrarySystem.FrameList.SettingsFrame.repaint();
+				LibrarySystem.FrameList.AccountsManagerFrame.repaint();
+		}
+}

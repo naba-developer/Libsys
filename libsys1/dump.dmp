@@ -1,0 +1,64 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: libsys
+-- ------------------------------------------------------
+-- Server version	5.0.45-community-nt
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Dumping data for table `books`
+--
+
+LOCK TABLES `books` WRITE;
+/*!40000 ALTER TABLE `books` DISABLE KEYS */;
+/*!40000 ALTER TABLE `books` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `borrowers`
+--
+
+LOCK TABLES `borrowers` WRITE;
+/*!40000 ALTER TABLE `borrowers` DISABLE KEYS */;
+INSERT INTO `borrowers` VALUES ('','','','','',''),('123','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('1231','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('1232','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('1233','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('1234','Pattu','patowary@nabajyoti.com','945587584','Bamunimaidan','Male'),('12345','Swaranga1','sarma.swaranga@gmail.com','9435336335','Tinsukia','Male'),('12351','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12352','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12353','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12354','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12355','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12356','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12357','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12358','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12359','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12360','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12361','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12362','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12363','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12364','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12365','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12366','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12367','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12368','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12369','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12370','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12371','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12372','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12373','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12374','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12375','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12376','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12377','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12378','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12379','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12380','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12381','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12382','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12383','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12384','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12385','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12386','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12387','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12388','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12389','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12390','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12391','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12392','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12393','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12394','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12395','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12396','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12397','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12398','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('12399','Swaranga','sarma.swaranga@gmail.com','9435336335','HOstel 6','Male'),('18546','Silchar','sarma.swaranga@gmail.com','Swaranga','9435336335','Male'),('99999','Bagmita','bagmita.cse','9435013418','Bharalumukh','Female'),('accno','name','mail','phno','addr	','sex'),('qw','aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa','nhfjhg','q','hgfkf,kughl','sa');
+/*!40000 ALTER TABLE `borrowers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `fines`
+--
+
+LOCK TABLES `fines` WRITE;
+/*!40000 ALTER TABLE `fines` DISABLE KEYS */;
+/*!40000 ALTER TABLE `fines` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `transactions`
+--
+
+LOCK TABLES `transactions` WRITE;
+/*!40000 ALTER TABLE `transactions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `transactions` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2009-08-24 12:43:30

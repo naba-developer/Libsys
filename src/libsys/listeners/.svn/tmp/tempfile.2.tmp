@@ -1,0 +1,85 @@
+package libsys.listeners;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import libsys.general.BorrowersData;
+import libsys.general.LIBSYSSystem;
+import libsys.general.utilities.UpdateBorrowersSearchResultsTableModel;
+
+public class UpdateBorrowersSearchButtonListener implements ActionListener
+{
+		LIBSYSSystem LibrarySystem;
+		ResultSet resulSet;
+		BorrowersData borrowersData=new BorrowersData();
+		String add = null;
+		
+		public UpdateBorrowersSearchButtonListener(LIBSYSSystem LibrarySystem)
+		{
+				this.LibrarySystem = LibrarySystem;
+		}
+		
+		public void actionPerformed(ActionEvent ae)
+		{
+				if(ae.getActionCommand().equals("Search"))
+				{
+						//JOptionPane.showMessageDialog(LibrarySystem.FrameList.NavigationFrame, "Pattu STILL has not written this action yet.");
+						//return;
+						String query ="SELECT * FROM Borrowers WHERE";
+						
+						borrowersData.BorrowerAccountNumber=LibrarySystem.FrameItems.updateBorrowerPanelItems.borroweraccnumber_txt.getText();
+						borrowersData.BorrowerName=LibrarySystem.FrameItems.updateBorrowerPanelItems.borrowername_txt.getText();
+						
+						if(check(borrowersData.BorrowerAccountNumber))
+						{
+								//query=formquery(bookData.BookAccountNumber);
+								add = " B_id like'"+borrowersData.BorrowerAccountNumber+"%'";								
+						}
+						
+							
+						if(check(borrowersData.BorrowerName))
+						{
+								//query=formquery(
+								if(add==null)
+								{
+										add=" B_name LIKE '"+borrowersData.BorrowerName+"%'";
+								}
+								else
+								{
+										add+=" and "+" B_name LIKE '"+borrowersData.BorrowerName+"%'";
+								}
+						}
+						
+						query =query + add;
+						
+						System.out.println(query);
+						
+						resulSet = LibrarySystem.DatabaseManager.executeSelectQuery(query);
+						
+						createTable(resulSet);
+				}
+		}
+		
+		private void createTable(ResultSet resultset)
+		{
+				LibrarySystem.FrameItems.updateBorrowerPanelItems.ResultsTable = new JTable(new UpdateBorrowersSearchResultsTableModel(resultset));
+				LibrarySystem.FrameItems.updateBorrowerPanelItems.ResultsTable.addMouseListener(LibrarySystem.listeners.myMouseListener);
+				
+				LibrarySystem.FrameItems.updateBorrowerPanelItems.searchresult_scrollpane.setViewportView(LibrarySystem.FrameItems.updateBorrowerPanelItems.ResultsTable);
+				
+				LibrarySystem.FrameList.NavigationFrame.repaint();
+		}
+		
+		private  boolean check(String s)
+		{
+				System.out.println(s);
+				
+				if(s.compareTo("")==0)
+				{						
+						return false;
+				}
+				return true;
+		}		
+}

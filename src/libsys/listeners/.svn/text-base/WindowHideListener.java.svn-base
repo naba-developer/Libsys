@@ -1,0 +1,30 @@
+package libsys.listeners;
+
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import libsys.general.LIBSYSSystem;
+import libsys.gui.MyFrame;
+
+public class WindowHideListener extends WindowAdapter
+{
+		public LIBSYSSystem LibrarySystem;
+		public MyFrame f;
+		
+		public WindowHideListener(LIBSYSSystem LibrarySystem, MyFrame f)
+		{
+				this.LibrarySystem = LibrarySystem;
+				this.f = f;
+		}
+		
+		public void windowClosed(WindowEvent we)
+		{
+				LibrarySystem.VisibleFrameList.remove(f);
+				f.setVisible(false);
+		}
+		
+		public void windowClosing(WindowEvent we)
+		{
+				LibrarySystem.VisibleFrameList.remove(f);
+				f.setVisible(false);
+		}
+}

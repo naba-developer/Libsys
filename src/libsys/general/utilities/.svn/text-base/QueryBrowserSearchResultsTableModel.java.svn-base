@@ -1,0 +1,85 @@
+package libsys.general.utilities;
+
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import javax.swing.table.AbstractTableModel;
+import libsys.general.LIBSYSSystem;
+
+public class QueryBrowserSearchResultsTableModel extends AbstractTableModel
+{
+		ResultSet resultSet;
+		ResultSetMetaData resultSetmd;
+		LIBSYSSystem LibrarySystem;
+		public QueryBrowserSearchResultsTableModel(LIBSYSSystem LibrarySystem, ResultSet rs)
+		{
+				this.resultSet = resultSet;
+				this.LibrarySystem = LibrarySystem;
+				try
+				{
+						resultSetmd = resultSet.getMetaData();
+				}
+				catch(Exception ex)
+				{
+						LibrarySystem.errorLogWriter.addErrorLog(ex.toString(), LibrarySystem.ErrorLogFile);;
+				}
+		}
+		
+		public String getColumnName(int c)
+                {
+				try
+				{
+						return resultSetmd.getColumnName(c + 1);
+				}
+				catch(Exception ex)
+				{
+						LibrarySystem.errorLogWriter.addErrorLog(ex.toString(), LibrarySystem.ErrorLogFile);						
+				}
+				
+				return "Column " + c;
+		}
+		
+		public Object getValueAt(int r, int c)
+		{
+				try
+				{
+						resultSet.absolute(r + 1);
+						return resultSet.getObject(c+ 1);
+				}
+				catch(Exception ex)
+				{
+						LibrarySystem.errorLogWriter.addErrorLog(ex.toString(), LibrarySystem.ErrorLogFile);
+				}
+				
+				return -1;
+		}
+		
+		public int getRowCount()
+		{
+				try
+				{
+						resultSet.last();
+				
+						return resultSet.getRow();
+				}
+				catch(Exception ex)
+				{
+						LibrarySystem.errorLogWriter.addErrorLog(ex.toString(), LibrarySystem.ErrorLogFile);
+				}	
+				
+				return -1;
+		}
+		
+		public int getColumnCount()
+		{
+				try
+				{
+						return resultSetmd.getColumnCount();
+				}
+				catch(Exception ex)
+				{
+						LibrarySystem.errorLogWriter.addErrorLog(ex.toString(), LibrarySystem.ErrorLogFile);
+				}
+				
+				return -1;
+		}
+}

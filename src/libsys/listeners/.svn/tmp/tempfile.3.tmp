@@ -1,0 +1,123 @@
+package libsys.listeners;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import libsys.general.BooksData;
+import libsys.general.LIBSYSSystem;
+import libsys.general.utilities.UpdateBooksSearchResultsTableModel;
+
+public class UpdateBooksSearchButtonListener implements ActionListener
+{
+		LIBSYSSystem LibrarySystem;
+		ResultSet resultSet;
+		String query;
+		BooksData bookData=new BooksData();
+		String add=null;
+		public UpdateBooksSearchButtonListener(LIBSYSSystem LibrarySystem)
+		{
+				this.LibrarySystem = LibrarySystem;
+		}
+		
+		public void actionPerformed(ActionEvent ae)
+		{
+				if(ae.getActionCommand().equals("Search"))
+				{
+						query="SELECT * FROM BOOKS WHERE";
+						
+						bookData.BookAccountNumber=LibrarySystem.FrameItems.updateBooksPanelItems.bookaccnumber_txt.getText();
+						bookData.BookAuthors=LibrarySystem.FrameItems.updateBooksPanelItems.bookauthor_textarea.getText();
+						bookData.BookEdition=LibrarySystem.FrameItems.updateBooksPanelItems.bookedition_txt.getText();
+						bookData.BookPublishers=LibrarySystem.FrameItems.updateBooksPanelItems.bookpublisher_textarea.getText();
+						bookData.BookTitle=LibrarySystem.FrameItems.updateBooksPanelItems.booktitle_textarea.getText();
+						
+						if(check(bookData.BookAccountNumber))
+						{
+								add=" Book_id like'"+bookData.BookAccountNumber+"%'";								
+						}
+						
+						if(check(bookData.BookAuthors))
+						{
+								if(add==null)
+								{
+										add=" Book_author like '"+bookData.BookAuthors+"%'";
+								}
+								else
+								{
+										add+=" and "+" Book_author like '"+bookData.BookAuthors+"%'";
+								}
+						}
+						
+						if(check(bookData.BookEdition))
+						{
+								if(add==null)
+								{
+										add=" Book_edition like'"+bookData.BookEdition+"%'";
+								}
+								else
+								{
+										add+=" and "+" Book_edition like '"+bookData.BookEdition+"%'";
+								}
+						}
+						if(check(bookData.BookPublishers))
+						{
+								if(add==null)
+								{
+										add=" Book_publisher like '"+bookData.BookPublishers+"%'";
+								}
+								else
+								{
+										add+=" and "+" Book_publisher like'"+bookData.BookPublishers+"%'";
+								}
+						}
+						
+						if(check(bookData.BookTitle))
+						{
+								if(add==null)
+								{
+										add=" Book_title like'"+bookData.BookTitle+"%'";
+								}
+								else
+								{
+										add+=" and "+" Book_title like'"+bookData.BookTitle+"%'";
+								}
+						}
+<<<<<<< .mine
+						
+						query = query + add;
+						
+						resultSet = LibrarySystem.DatabaseManager.executeSelectQuery(query);
+						
+						createTable(resultSet);
+=======
+						query =query+add+" and Book_availaible='Yes'";
+						System.out.println(query);
+						resultSet=LibrarySystem.DatabaseManager.executeSelectQuery(query);
+>>>>>>> .r41
+				}
+		}
+		
+		private void createTable(ResultSet resultset)
+		{
+				LibrarySystem.FrameItems.updateBooksPanelItems.ResultsTable = new JTable(new UpdateBooksSearchResultsTableModel(resultset));
+				LibrarySystem.FrameItems.updateBooksPanelItems.ResultsTable.addMouseListener(LibrarySystem.listeners.myMouseListener);
+				LibrarySystem.FrameItems.updateBooksPanelItems.ResultsTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+				
+				LibrarySystem.FrameItems.updateBooksPanelItems.searchresultstable_scrollpane.setViewportView(LibrarySystem.FrameItems.updateBooksPanelItems.ResultsTable);
+				
+				LibrarySystem.FrameList.NavigationFrame.repaint();
+		}
+		
+		private  boolean check(String s)
+		{
+				System.out.println(s);
+				if(s.compareTo("")==0)
+				{
+						
+						return false;
+				}
+				return true;
+		}
+}

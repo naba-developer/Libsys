@@ -1,0 +1,97 @@
+package libsys.listeners;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import libsys.general.BooksData;
+import libsys.general.BorrowersData;
+import libsys.general.LIBSYSSystem;
+
+public class NewBorrowingsTransmitButtonListener implements ActionListener
+{
+		LIBSYSSystem LibrarySystem;
+		int maxval=0;
+		ResultSet resultSet;
+		int result;
+		
+		public NewBorrowingsTransmitButtonListener(LIBSYSSystem LibrarySystem)
+		{
+				this.LibrarySystem = LibrarySystem;
+		}
+		
+		public void actionPerformed(ActionEvent ae)
+		{
+				if(ae.getActionCommand().equals("Transmit Transaction"))
+				{
+						//JOptionPane.showMessageDialog(LibrarySystem.FrameList.NavigationFrame, "Pattu has not written this action yet.");
+						//return;
+						
+						BooksData bookData = new BooksData();
+						BorrowersData borrowerData=new BorrowersData();
+						
+						String query1="SELECT MAX(Tid) FROM  TRANSACTIONS";
+						
+						resultSet=LibrarySystem.DatabaseManager.executeSelectQuery(query1);
+						try
+						{
+								resultSet.next();
+								
+								if(resultSet.getObject(1)!=null)
+								{
+										
+										maxval=Integer.parseInt(resultSet.getObject(1).toString());
+										
+								}
+								maxval++;
+								bookData.BookAccountNumber=LibrarySystem.FrameItems.borrowingPanelItems.bookaccnumber_txt.getText();
+								String checkquery="SELECT Book_id from books where book_id='"+bookData.BookAccountNumber+"' and Book_availaible="+"'Yes'";
+								resultSet=LibrarySystem.DatabaseManager.executeSelectQuery(checkquery);
+								if(resultSet.next()==false)
+								{
+										JOptionPane.showMessageDialog(LibrarySystem.FrameList.NavigationFrame, "The book id entered is not availaible");
+										clearBook();
+										return;
+								}
+								borrowerData.BorrowerAccountNumber=LibrarySystem.FrameItems.borrowingPanelItems.borroweraccnumber_txt.getText();
+								String borrow_date=LibrarySystem.FrameItems.borrowingPanelItems.bookborrowdate_btn.getText();
+								String due_date=LibrarySystem.FrameItems.borrowingPanelItems.bookduedate_btn.getText();
+								String query2="UPDATE BOOKS SET Book_availaible='No' where book_id='"+bookData.BookAccountNumber+"'";
+								String query3="INSERT INTO TRANSACTIONS VALUES('"+maxval+"','"+borrowerData.BorrowerAccountNumber+"','"+bookData.BookAccountNumber+"','"+borrow_date+"','"+due_date+"','"+"')";
+								LibrarySystem.DatabaseManager.executeOtherQuery(query2);
+								result=LibrarySystem.DatabaseManager.executeOtherQuery(query3);
+								if(result!=-1)
+								{
+										JOptionPane.showMessageDialog(LibrarySystem.FrameList.NavigationFrame, " Transaction  uploaded successfully");
+										clearBook();
+										clearBorrower();
+								}
+						}
+						catch(Exception e)
+						{
+								e.printStackTrace();
+						}
+								
+								
+				}
+		}
+		public void clearBook()
+		{
+				LibrarySystem.FrameItems.borrowingPanelItems.bookauthor_txt.setText(null);
+				LibrarySystem.FrameItems.borrowingPanelItems.bookedition_txt.setText(null);
+				LibrarySystem.FrameItems.borrowingPanelItems.bookprice_txt.setText(null);
+				LibrarySystem.FrameItems.borrowingPanelItems.bookpublisher_txt.setText(null);
+				LibrarySystem.FrameItems.borrowingPanelItems.booktitle_txt.setText(null);
+				LibrarySystem.FrameItems.borrowingPanelItems.bookaccnumber_txt.setText(null);
+										
+		}
+		public void clearBorrower()
+		{
+				LibrarySystem.FrameItems.borrowingPanelItems.borrowersex_txt.setText(null);
+				LibrarySystem.FrameItems.borrowingPanelItems.borrowername_txt.setText(null);
+				LibrarySystem.FrameItems.borrowingPanelItems.borroweraddress_textarea.setText(null);
+				LibrarySystem.FrameItems.borrowingPanelItems.borrowerphone_txt.setText(null);
+				LibrarySystem.FrameItems.borrowingPanelItems.email_txt.setText(null);
+				LibrarySystem.FrameItems.borrowingPanelItems.borroweraccnumber_txt.setText(null);
+		}
+}

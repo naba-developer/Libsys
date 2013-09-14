@@ -1,0 +1,82 @@
+package libsys.gui.items;
+
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+
+public class QueryBrowserPanelItems 
+{
+		public javax.swing.JPanel browsedatabase_panel;
+                public javax.swing.JScrollPane browsedatabase_scrollpane;
+                public javax.swing.JPanel databasebrowser_panel;
+                public javax.swing.JButton executequery_btn;
+                public javax.swing.JLabel executequery_label;
+                public javax.swing.JPanel previewdatabase_panel;
+                public javax.swing.JTextArea query_textarea;
+                public javax.swing.JPanel queryarea_panel;
+                public javax.swing.JPanel querybrowser_panel;
+                public javax.swing.JScrollPane querybrowser_scrollpane;
+                public javax.swing.JTabbedPane querybrowser_tabbedpane;
+                public javax.swing.JScrollPane querytextarea_scrollpane;
+                public javax.swing.JPanel table_panel;
+                public javax.swing.JScrollPane tables_scrollpane;
+		public javax.swing.JLabel databasedesignimage_label;
+		public javax.swing.JScrollPane prewiewdatabasedesignimages_scrollpane;
+		
+		public JTable ResultsTable;
+		
+		public QueryBrowserPanelItems() 
+		{
+                                querybrowser_scrollpane = new javax.swing.JScrollPane();
+                                querybrowser_panel = new javax.swing.JPanel();
+                                querybrowser_tabbedpane = new javax.swing.JTabbedPane();
+                                browsedatabase_panel = new javax.swing.JPanel();
+                                browsedatabase_scrollpane = new javax.swing.JScrollPane();
+                                databasebrowser_panel = new javax.swing.JPanel();
+                                queryarea_panel = new javax.swing.JPanel();
+                                executequery_label = new javax.swing.JLabel();
+                                executequery_btn = new javax.swing.JButton();
+                                querytextarea_scrollpane = new javax.swing.JScrollPane();
+                                query_textarea = new javax.swing.JTextArea();
+                                table_panel = new javax.swing.JPanel();
+                                tables_scrollpane = new javax.swing.JScrollPane();
+                                previewdatabase_panel = new javax.swing.JPanel();
+				databasedesignimage_label = new javax.swing.JLabel();
+				prewiewdatabasedesignimages_scrollpane = new javax.swing.JScrollPane();
+
+                                querybrowser_tabbedpane.setBackground(new java.awt.Color(102, 102, 255));
+
+                                browsedatabase_panel.setBackground(new java.awt.Color(204, 204, 255));
+
+                                databasebrowser_panel.setBackground(new java.awt.Color(102, 102, 255));
+
+                                queryarea_panel.setBackground(new java.awt.Color(204, 204, 255));
+
+                                executequery_label.setText("Enter the query :");
+
+                                executequery_btn.setText("Execute Query");
+
+                                query_textarea.setColumns(20);
+                                query_textarea.setLineWrap(true);
+                                query_textarea.setRows(5);
+                                querytextarea_scrollpane.setViewportView(query_textarea);
+				
+				table_panel.setBackground(new java.awt.Color(204, 204, 255));
+
+                                tables_scrollpane.setBackground(new java.awt.Color(204, 204, 255));
+				
+				browsedatabase_scrollpane.setViewportView(databasebrowser_panel);
+				
+				querybrowser_tabbedpane.addTab("Database Browser", browsedatabase_panel);
+				
+				querybrowser_tabbedpane.addTab("Preview Database Design", previewdatabase_panel);
+				
+				querybrowser_scrollpane.setViewportView(querybrowser_panel);						
+				
+				prewiewdatabasedesignimages_scrollpane.setViewportView(databasedesignimage_label);
+				
+				databasedesignimage_label.setIcon(new ImageIcon("AppData\\ImageFiles\\DesignPreview.JPG"));
+		}
+		
+}

@@ -1,0 +1,100 @@
+package libsys.general.utilities;
+
+import libsys.general.LIBSYSSystem;
+
+public class SystemCommandExecutor 
+{
+		LIBSYSSystem LibrarySystem;
+		String username, password;
+		
+		public SystemCommandExecutor(LIBSYSSystem LibrarySystem) 
+		{
+				this.LibrarySystem = LibrarySystem;
+		}
+		
+		private void getPassword(String filename)
+		{
+				String[] store=new String[2];
+				username=store[1];
+				password=store[2];
+		}
+		
+		public void startDatabaseServer()
+		{
+				String  s= "sc start mysql";
+				commandRunner(s);
+		}
+		
+		public void stopDatabaseServer()
+		{
+				String s="sc stop mysql";
+				commandRunner(s);				
+		}
+				
+		public void backupDatabase(String filename)
+		{
+				try
+				{
+						String [] account = LibrarySystem.loginManager.mysqlUser(LibrarySystem.MySQLFile);
+						
+						String s="mysqldump -u "+ account[0] + " --password=" + account[1] + " libsys >" + filename;
+						commandRunner(s);
+				}
+				catch(Exception ex)
+				{
+						LibrarySystem.errorLogWriter.addErrorLog(ex.toString(), LibrarySystem.ErrorLogFile);
+				}		
+		}
+		
+		public void loadBackup(String filename)
+		{
+				try
+				{
+						String [] account = LibrarySystem.loginManager.mysqlUser(LibrarySystem.MySQLFile);
+						
+						String s = "mysql -u "+ account[0] + " --password=" + account[1] + "  --force libsys <" + filename;
+						commandRunner(s);
+				}
+				catch(Exception ex)
+				{
+						LibrarySystem.errorLogWriter.addErrorLog(ex.toString(), LibrarySystem.ErrorLogFile);
+				}	
+				
+		}
+		
+		public void createMySQLDatabase(String filename)
+		{
+				try
+				{
+						String [] account = LibrarySystem.loginManager.mysqlUser(LibrarySystem.MySQLFile);
+						
+						String s="mysql -u "+ account[0] + " --password=" + account[1] + " < " + filename;
+				
+						commandRunner(s);
+				}
+				catch(Exception ex)
+				{
+						LibrarySystem.errorLogWriter.addErrorLog(ex.toString(), LibrarySystem.ErrorLogFile);
+				}
+		}
+		
+		public void runHelpFile(String filename)
+		{
+				String s = "hh" + filename;
+				
+				commandRunner(s);
+		}
+		
+		private  void commandRunner(String s)
+		{
+				try
+				{
+						ProcessBuilder pb = new ProcessBuilder("cmd", "/c", s);
+						Process proc=pb.start();
+				}
+				catch(Exception e)
+				{
+						e.printStackTrace();
+				}
+		}
+}

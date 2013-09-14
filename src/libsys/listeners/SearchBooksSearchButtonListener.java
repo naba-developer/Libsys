@@ -1,0 +1,286 @@
+package libsys.listeners;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.util.Date;
+import javax.swing.JEditorPane;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import libsys.general.BooksData;
+import libsys.general.LIBSYSSystem;
+import libsys.general.utilities.SearchBooksSearchResultsTableModel;
+import libsys.general.utilities.SystemLogEvent;
+
+public class SearchBooksSearchButtonListener implements ActionListener
+{
+		LIBSYSSystem LibrarySystem;
+		BooksData bookData = new BooksData();
+		ResultSet resultSet;
+		String query,add=null;
+		
+		public SearchBooksSearchButtonListener(LIBSYSSystem LibrarySystem)
+		{
+				this.LibrarySystem = LibrarySystem;
+		}
+		
+		public void actionPerformed(ActionEvent ae)
+		{
+				if(ae.getActionCommand().equals("Search"))
+				{
+						query="SELECT * FROM BOOKS WHERE";
+						
+						bookData.BookAccountNumber=LibrarySystem.FrameItems.searchBooksPanelItems.bookaccnumber_txt.getText();
+						bookData.BookAuthors=LibrarySystem.FrameItems.searchBooksPanelItems.bookauthor_textarea.getText();
+						bookData.BookEdition=LibrarySystem.FrameItems.searchBooksPanelItems.bookedition_spinner.getValue().toString();
+						bookData.BookPublishers=LibrarySystem.FrameItems.searchBooksPanelItems.bookpublisher_textarea.getText();
+						bookData.BookTitle=LibrarySystem.FrameItems.searchBooksPanelItems.booktitle_textarea.getText();
+						
+						if(check(bookData.BookAccountNumber))
+						{
+								add=" Book_id like '"+bookData.BookAccountNumber+"%'";								
+						}
+						
+						if(check(bookData.BookAuthors))
+						{
+								if(add==null)
+								{
+										add=" Book_author like '"+bookData.BookAuthors+"%'";
+								}
+								else
+								{
+										add+=" and "+" Book_author like '"+bookData.BookAuthors+"%'";
+								}
+						}
+						
+						if(check(bookData.BookEdition))
+						{
+								if(add==null)
+								{
+										add=" Book_edition like'"+bookData.BookEdition+"%'";
+								}
+								else
+								{
+										add+=" and "+" Book_edition like '"+bookData.BookEdition+"%'";
+								}
+						}
+						
+						if(check(bookData.BookPublishers))
+						{								
+								if(add==null)
+								{
+										add=" Book_publisher like '"+bookData.BookPublishers+"%'";
+								}
+								else
+								{
+										add+=" and "+" Book_publisher like'"+bookData.BookPublishers+"%'";
+								}
+						}
+						
+						if(check(bookData.BookTitle))
+						{
+								if(add==null)
+								{
+										add=" Book_title like'"+bookData.BookTitle+"%'";
+								}
+								else
+								{
+										add+=" and "+" Book_title like'"+bookData.BookTitle+"%'";
+								}
+						}
+						
+						String finalQuery = query + add + "ORDER BY Book_id";
+						
+						try
+						{
+								resultSet = LibrarySystem.DatabaseManager.executeSelectQuery(finalQuery);
+								
+								if(resultSet == null)
+								{
+										LibrarySystem.FrameItems.searchBooksPanelItems.searchresultstable_scrollpane.setViewportView(null);
+										
+										LibrarySystem.FrameItems.searchBooksPanelItems.print_btn.setEnabled(false);
+										
+										LibrarySystem.DatabaseManager.closeConnection();
+										
+										return;
+								}
+								
+								if(resultSet.next() == false)
+								{
+										LibrarySystem.FrameItems.searchBooksPanelItems.searchresultstable_scrollpane.setViewportView(null);
+										
+										LibrarySystem.FrameItems.searchBooksPanelItems.print_btn.setEnabled(false);
+										
+										JOptionPane.showMessageDialog(LibrarySystem.FrameList.NavigationFrame, "No Books exist in the database satisfying the give search criteria");
+										
+										refreshTableData();
+										
+										return;
+								}
+								
+								createTable(resultSet);
+								
+								Date d = new Date();
+								SystemLogEvent event = new SystemLogEvent();
+									
+								event.EventID = 4;
+								event.EventName = "Book  search from database recorded.";
+								event.EventTime = d.toString();
+								event.Username = LibrarySystem.current;
+										
+								LibrarySystem.systemLogManager.addEventToLogFile(event, LibrarySystem.SystemLogFile);
+								
+								LibrarySystem.DatabaseManager.closeConnection();
+								
+								LibrarySystem.FrameItems.searchBooksPanelItems.searchprogress_progressbar.setValue(LibrarySystem.FrameItems.searchBooksPanelItems.searchprogress_progressbar.getMaximum());
+						}
+						catch(Exception ex)
+						{
+								LibrarySystem.errorLogWriter.addErrorLog(ex.toString(), LibrarySystem.ErrorLogFile);
+						}
+				}
+				
+				if(ae.getActionCommand().equals("Print"))
+				{
+						LibrarySystem.systemResetter.resetPrintPreviewFrame();
+						
+						if(LibrarySystem.FrameItems.searchBooksPanelItems.searchresultstable_scrollpane.getViewport() == null)
+						{
+								return;
+						}
+						
+						LibrarySystem.FrameItems.printPreviewFrameItems.ResultsTable = new JTable(LibrarySystem.FrameItems.searchBooksPanelItems.ResultsTable.getModel());
+						LibrarySystem.FrameItems.printPreviewFrameItems.preview_scrollpane.setViewportView(LibrarySystem.FrameItems.printPreviewFrameItems.ResultsTable);
+						LibrarySystem.FrameItems.printPreviewFrameItems.Component = "Table";
+						
+						LibrarySystem.FrameList.PrintPreviewFrame.setVisible(true);
+						LibrarySystem.VisibleFrameList.add(LibrarySystem.FrameList.PrintPreviewFrame);					
+				}
+		}
+		
+		private void refreshTableData()
+		{
+				query="SELECT * FROM BOOKS WHERE";
+						
+						bookData.BookAccountNumber=LibrarySystem.FrameItems.searchBooksPanelItems.bookaccnumber_txt.getText();
+						bookData.BookAuthors=LibrarySystem.FrameItems.searchBooksPanelItems.bookauthor_textarea.getText();
+						bookData.BookEdition=LibrarySystem.FrameItems.searchBooksPanelItems.bookedition_spinner.getValue().toString();
+						bookData.BookPublishers=LibrarySystem.FrameItems.searchBooksPanelItems.bookpublisher_textarea.getText();
+						bookData.BookTitle=LibrarySystem.FrameItems.searchBooksPanelItems.booktitle_textarea.getText();
+						
+						if(check(bookData.BookAccountNumber))
+						{
+								add=" Book_id like '"+bookData.BookAccountNumber+"%'";								
+						}
+						
+						if(check(bookData.BookAuthors))
+						{
+								if(add==null)
+								{
+										add=" Book_author like '"+bookData.BookAuthors+"%'";
+								}
+								else
+								{
+										add+=" and "+" Book_author like '"+bookData.BookAuthors+"%'";
+								}
+						}
+						
+						if(check(bookData.BookEdition))
+						{
+								if(add==null)
+								{
+										add=" Book_edition like'"+bookData.BookEdition+"%'";
+								}
+								else
+								{
+										add+=" and "+" Book_edition like '"+bookData.BookEdition+"%'";
+								}
+						}
+						
+						if(check(bookData.BookPublishers))
+						{								
+								if(add==null)
+								{
+										add=" Book_publisher like '"+bookData.BookPublishers+"%'";
+								}
+								else
+								{
+										add+=" and "+" Book_publisher like'"+bookData.BookPublishers+"%'";
+								}
+						}
+						
+						if(check(bookData.BookTitle))
+						{
+								if(add==null)
+								{
+										add=" Book_title like'"+bookData.BookTitle+"%'";
+								}
+								else
+								{
+										add+=" and "+" Book_title like'"+bookData.BookTitle+"%'";
+								}
+						}
+						
+						String finalQuery = query + add + "ORDER BY Book_id";
+						
+						try
+						{
+								resultSet = LibrarySystem.DatabaseManager.executeSelectQuery(finalQuery);
+								
+								if(resultSet == null)
+								{
+										LibrarySystem.FrameItems.searchBooksPanelItems.searchresultstable_scrollpane.setViewportView(null);
+										
+										LibrarySystem.FrameItems.searchBooksPanelItems.print_btn.setEnabled(false);								
+										
+										LibrarySystem.DatabaseManager.closeConnection();
+										
+										return;
+								}
+								
+								if(resultSet.next() == false)
+								{
+										LibrarySystem.FrameItems.searchBooksPanelItems.searchresultstable_scrollpane.setViewportView(null);
+										
+										LibrarySystem.FrameItems.searchBooksPanelItems.print_btn.setEnabled(false);
+										
+										return;
+								}
+								
+								createTable(resultSet);
+								
+								LibrarySystem.DatabaseManager.closeConnection();
+						}
+						catch(Exception ex)
+						{
+								LibrarySystem.errorLogWriter.addErrorLog(ex.toString(), LibrarySystem.ErrorLogFile);
+						}
+		}
+		
+		private void createTable(ResultSet resultset)
+		{
+				LibrarySystem.FrameItems.searchBooksPanelItems.ResultsTable = new JTable(new SearchBooksSearchResultsTableModel(LibrarySystem, resultset));
+				LibrarySystem.FrameItems.searchBooksPanelItems.ResultsTable.setAutoCreateRowSorter(true);
+				LibrarySystem.FrameItems.searchBooksPanelItems.ResultsTable.addMouseListener(LibrarySystem.listeners.myMouseListener);
+				LibrarySystem.FrameItems.searchBooksPanelItems.ResultsTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+				LibrarySystem.FrameItems.searchBooksPanelItems.ResultsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+				
+				LibrarySystem.FrameItems.searchBooksPanelItems.searchresultstable_scrollpane.setViewportView(LibrarySystem.FrameItems.searchBooksPanelItems.ResultsTable);
+				
+				LibrarySystem.FrameItems.searchBooksPanelItems.print_btn.setEnabled(true);
+				
+				LibrarySystem.FrameList.NavigationFrame.repaint();
+		}
+		
+		private  boolean check(String s)
+		{
+				if(s.compareTo("") == 0)
+				{
+						return false;
+				}
+				
+				return true;
+		}	
+}

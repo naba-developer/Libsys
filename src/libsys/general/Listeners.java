@@ -1,0 +1,102 @@
+package libsys.general;
+
+import libsys.general.LIBSYSSystem;
+import libsys.listeners.CalendarGenerator;
+import libsys.listeners.MyDocumentListener;
+import libsys.listeners.NewBorrowingsTransmitButtonListener;
+import libsys.listeners.RegisterAccountButtonListener;
+import libsys.listeners.ColorChangePanelButtonListener;
+import libsys.listeners.ImposeFineCheckBoxListener;
+import libsys.listeners.LoginFrameButtonListener;
+import libsys.listeners.MainMenuBarListener;
+import libsys.listeners.NavigationTreeListener;
+import libsys.listeners.SettingsFontSizeSpinnerListener;
+import libsys.listeners.SettingsFontStyleItemsListener;
+import libsys.listeners.SettingsTreeListener;
+import libsys.listeners.TransactionPanelRadioButtonGroupListener;
+import libsys.listeners.ViewSystemLogButtonListener;
+import libsys.listeners.WindowExitListener;
+import libsys.listeners.WindowHideListener;
+import libsys.listeners.utility.MyMouseListener;
+import libsys.listeners.utility.SelectAllCheckBoxListener;
+
+public class Listeners
+{
+		public LIBSYSSystem LibrarySystem;	
+		
+		public TreeListeners treeListeners;
+		public ButtonListeners buttonListeners;
+		public KeyBoardListeners keyBoardListeners;
+		public MainMenuBarListener mainMenuBarListener;
+		public TextBoxListeners textBoxListeners;
+		public ItemStateListeners itemStateListener;
+		
+		public CalendarGenerator calendarGenerator;
+		
+		public WindowHideListener SettingsWindowHideListener;
+		public WindowHideListener CalculatorWindowHideListener;
+		public WindowHideListener AccountsWindowListener;
+		public WindowHideListener MySQLWindowHideListener;
+		public WindowHideListener PreviewFrameWindowHideListener;
+		public WindowHideListener AboutFrameWindowHideListener;
+		
+		public WindowExitListener NavigationWindowExitListener;
+		public WindowExitListener LoginWindowExitListener;
+		public WindowExitListener AccountRegistrationWindowExitListener;
+		
+		public SettingsFontStyleItemsListener FontItemsListener;
+		
+		public SettingsFontSizeSpinnerListener FontSpinnerListener;
+		
+		public ImposeFineCheckBoxListener imposeFineCheckBoxListener;
+		
+		public ColorChangePanelButtonListener colorChangePanelButtonListener;
+		
+		public TransactionPanelRadioButtonGroupListener transactionPanelRadioButtonGroupListener;
+		
+		public SelectAllCheckBoxListener selectAllCheckBoxListener;
+		
+		public RegisterAccountButtonListener addAccountButtonListener;
+		
+		public ViewSystemLogButtonListener viewSystemLogButtonListener;	
+		
+		public MyMouseListener myMouseListener;	
+		
+		public Listeners(LIBSYSSystem LibrarySystem)
+		{
+				this.LibrarySystem = LibrarySystem;
+				
+				treeListeners = new TreeListeners(LibrarySystem);
+				buttonListeners = new ButtonListeners(LibrarySystem);
+				keyBoardListeners = new KeyBoardListeners(LibrarySystem);
+				mainMenuBarListener = new MainMenuBarListener(LibrarySystem);
+				textBoxListeners = new TextBoxListeners(LibrarySystem);
+				calendarGenerator = new CalendarGenerator(LibrarySystem);
+				itemStateListener = new ItemStateListeners(LibrarySystem);
+				
+				CalculatorWindowHideListener = new WindowHideListener(LibrarySystem, LibrarySystem.FrameList.CalculatorFrame);
+				SettingsWindowHideListener = new WindowHideListener(LibrarySystem, LibrarySystem.FrameList.SettingsFrame);
+				AccountsWindowListener = new WindowHideListener(LibrarySystem, LibrarySystem.FrameList.AccountsManagerFrame);
+				MySQLWindowHideListener = new WindowHideListener(LibrarySystem, LibrarySystem.FrameList.MySQLFrame);
+				PreviewFrameWindowHideListener = new WindowHideListener(LibrarySystem, LibrarySystem.FrameList.PrintPreviewFrame);
+				AboutFrameWindowHideListener = new WindowHideListener(LibrarySystem, LibrarySystem.FrameList.AboutLIBSYSFrame);
+				
+				FontItemsListener = new SettingsFontStyleItemsListener(LibrarySystem);
+				FontSpinnerListener = new SettingsFontSizeSpinnerListener(LibrarySystem);
+				
+				imposeFineCheckBoxListener = new ImposeFineCheckBoxListener(LibrarySystem);
+				
+				colorChangePanelButtonListener = new ColorChangePanelButtonListener(LibrarySystem);
+				
+				transactionPanelRadioButtonGroupListener = new TransactionPanelRadioButtonGroupListener(LibrarySystem);	
+				addAccountButtonListener = new RegisterAccountButtonListener(LibrarySystem);
+				
+				viewSystemLogButtonListener = new ViewSystemLogButtonListener(LibrarySystem);
+				
+				NavigationWindowExitListener = new WindowExitListener(LibrarySystem, LibrarySystem.FrameList.NavigationFrame);
+				LoginWindowExitListener = new WindowExitListener(LibrarySystem, LibrarySystem.FrameList.LoginFrame);
+				AccountRegistrationWindowExitListener = new WindowExitListener(LibrarySystem, LibrarySystem.FrameList.AccountsManagerFrame);	
+				
+				myMouseListener = new MyMouseListener(LibrarySystem);			
+		}	
+}

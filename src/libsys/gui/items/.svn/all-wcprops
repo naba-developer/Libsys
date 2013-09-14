@@ -1,0 +1,239 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/Source/!svn/ver/124/src/libsys/gui/items
+END
+FinesImposePanelItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/Source/!svn/ver/87/src/libsys/gui/items/FinesImposePanelItems.java
+END
+SpecificDatePanelItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/Source/!svn/ver/92/src/libsys/gui/items/SpecificDatePanelItems.java
+END
+BorrowerRecordsPanelItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/Source/!svn/ver/99/src/libsys/gui/items/BorrowerRecordsPanelItems.java
+END
+CalculatorFrameItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/Source/!svn/ver/1/src/libsys/gui/items/CalculatorFrameItems.java
+END
+CustomDateRangePanelItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/Source/!svn/ver/99/src/libsys/gui/items/CustomDateRangePanelItems.java
+END
+SystemLogPanelItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/Source/!svn/ver/1/src/libsys/gui/items/SystemLogPanelItems.java
+END
+AccountRegistrationPanelItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/Source/!svn/ver/107/src/libsys/gui/items/AccountRegistrationPanelItems.java
+END
+UpdateBorrowersPanelItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/Source/!svn/ver/78/src/libsys/gui/items/UpdateBorrowersPanelItems.java
+END
+PrintPreviewFrameItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/Source/!svn/ver/124/src/libsys/gui/items/PrintPreviewFrameItems.java
+END
+NavigationFrameItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/Source/!svn/ver/28/src/libsys/gui/items/NavigationFrameItems.java
+END
+SettingsFrameItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/Source/!svn/ver/1/src/libsys/gui/items/SettingsFrameItems.java
+END
+AllFinesPanelItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/Source/!svn/ver/99/src/libsys/gui/items/AllFinesPanelItems.java
+END
+InsertBooksPanelItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/Source/!svn/ver/90/src/libsys/gui/items/InsertBooksPanelItems.java
+END
+EditAccountPanelItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/Source/!svn/ver/107/src/libsys/gui/items/EditAccountPanelItems.java
+END
+SearchBooksPanelItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/Source/!svn/ver/87/src/libsys/gui/items/SearchBooksPanelItems.java
+END
+LoginFrameItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/Source/!svn/ver/109/src/libsys/gui/items/LoginFrameItems.java
+END
+AccountsManagerFrameItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/Source/!svn/ver/1/src/libsys/gui/items/AccountsManagerFrameItems.java
+END
+AddAccountPanelItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/Source/!svn/ver/1/src/libsys/gui/items/AddAccountPanelItems.java
+END
+DeleteBorrowersPanelItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/Source/!svn/ver/49/src/libsys/gui/items/DeleteBorrowersPanelItems.java
+END
+CurrentTransactionsPanelItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/Source/!svn/ver/1/src/libsys/gui/items/CurrentTransactionsPanelItems.java
+END
+AllBorrowersPanelItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/Source/!svn/ver/86/src/libsys/gui/items/AllBorrowersPanelItems.java
+END
+SettingsFontsAndColorsPanelItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/Source/!svn/ver/1/src/libsys/gui/items/SettingsFontsAndColorsPanelItems.java
+END
+ReturnPanelItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/Source/!svn/ver/99/src/libsys/gui/items/ReturnPanelItems.java
+END
+DeleteAccountPanelItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/Source/!svn/ver/107/src/libsys/gui/items/DeleteAccountPanelItems.java
+END
+UpdateBooksPanelItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/Source/!svn/ver/99/src/libsys/gui/items/UpdateBooksPanelItems.java
+END
+AccountRegistrationFrameItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/Source/!svn/ver/1/src/libsys/gui/items/AccountRegistrationFrameItems.java
+END
+ChangeColorPanelItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/Source/!svn/ver/1/src/libsys/gui/items/ChangeColorPanelItems.java
+END
+TransactionPanelItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/Source/!svn/ver/110/src/libsys/gui/items/TransactionPanelItems.java
+END
+SearchBorrowerPanelItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/Source/!svn/ver/49/src/libsys/gui/items/SearchBorrowerPanelItems.java
+END
+SpecificMonthPanelItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/Source/!svn/ver/87/src/libsys/gui/items/SpecificMonthPanelItems.java
+END
+DeleteBooksPanelItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/Source/!svn/ver/92/src/libsys/gui/items/DeleteBooksPanelItems.java
+END
+MySQLFrameItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/Source/!svn/ver/94/src/libsys/gui/items/MySQLFrameItems.java
+END
+FinesPaymentPanelItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/Source/!svn/ver/99/src/libsys/gui/items/FinesPaymentPanelItems.java
+END
+SpecificYearPanelItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/Source/!svn/ver/87/src/libsys/gui/items/SpecificYearPanelItems.java
+END
+SettingsLibrarySettingsPanelItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/Source/!svn/ver/1/src/libsys/gui/items/SettingsLibrarySettingsPanelItems.java
+END
+AllBooksPanelItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/Source/!svn/ver/110/src/libsys/gui/items/AllBooksPanelItems.java
+END
+BorrowingPanelItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/Source/!svn/ver/110/src/libsys/gui/items/BorrowingPanelItems.java
+END
+QueryBrowserPanelItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/Source/!svn/ver/62/src/libsys/gui/items/QueryBrowserPanelItems.java
+END
+InsertBorrowersPanelItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/Source/!svn/ver/90/src/libsys/gui/items/InsertBorrowersPanelItems.java
+END

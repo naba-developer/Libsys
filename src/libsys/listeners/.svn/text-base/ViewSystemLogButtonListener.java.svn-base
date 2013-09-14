@@ -1,0 +1,673 @@
+package libsys.listeners;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+import java.util.StringTokenizer;
+import javax.swing.JOptionPane;
+import libsys.general.LIBSYSSystem;
+import libsys.general.utilities.SystemLogEvent;
+
+public class ViewSystemLogButtonListener implements ActionListener
+{
+		LIBSYSSystem LibrarySystem;
+		
+		public ViewSystemLogButtonListener(LIBSYSSystem LibrarySystem)
+		{
+				this.LibrarySystem = LibrarySystem;
+		}
+		
+		public void actionPerformed(ActionEvent ae)
+		{
+				if(ae.getActionCommand().equals("Display Log"))
+				{						
+						displayLog();
+				}
+				
+				if(ae.getActionCommand().equals("Print"))
+				{
+						if(LibrarySystem.FrameItems.systemLogPanelItems.systemlog_textarea.getText() == null || LibrarySystem.FrameItems.systemLogPanelItems.systemlog_textarea.getText().length() == 0)
+						{
+								return;
+						}
+						
+						String text = getPrintData();
+						
+						text = LibrarySystem.dataFormatter.getHTMLFormattedData("", "", text);
+						
+						text = LibrarySystem.dataFormatter.getHTMLFormattedData("", "", text);
+						
+						LibrarySystem.FrameItems.printPreviewFrameItems.EditorPane.setText(text);
+						
+						LibrarySystem.FrameItems.printPreviewFrameItems.preview_scrollpane.setViewportView(LibrarySystem.FrameItems.printPreviewFrameItems.EditorPane);
+						LibrarySystem.FrameItems.printPreviewFrameItems.Component = "EditorPane";
+						
+						LibrarySystem.FrameList.PrintPreviewFrame.setVisible(true);
+						
+						LibrarySystem.VisibleFrameList.add(LibrarySystem.FrameList.PrintPreviewFrame);
+				}
+		}
+		
+		private String getPrintData()
+		{
+				String text = "";
+				
+				try
+				{
+						FileInputStream fin = new FileInputStream(LibrarySystem.SystemLogFile);
+						
+						Scanner scanner = new Scanner(fin);
+						
+						SystemLogEvent event = new SystemLogEvent();
+						
+						int i = 1;					
+						
+						while(scanner.hasNextLine())
+						{
+								String line = scanner.nextLine();
+								
+								if(isValidLine(line) == false)
+								{
+										continue;
+								}
+								
+								if(LibrarySystem.FrameItems.systemLogPanelItems.logduration_combobox.getSelectedItem().toString() != "Entire System Log")
+								{
+										if(fallsWithinRange(line) == false)
+										{
+												continue;
+										}
+								}							
+								
+								event.EventID = getEventID(line);
+								event.Username = getUsername(line);
+								event.EventName = getEventName(line);
+								event.EventTime = getEventTime(line);
+								line = generateEventLine(event, i);
+								
+								text = text + line + "<BR><BR>";
+								
+								i++;
+						}									
+				}
+				catch(Exception ex)
+				{
+						LibrarySystem.errorLogWriter.addErrorLog(ex.toString(), LibrarySystem.ErrorLogFile);
+				}
+				
+				return text;
+		}
+		
+		private void displayLog()
+		{
+				if(checkSelections() == false)
+				{
+						JOptionPane.showMessageDialog(LibrarySystem.FrameList.NavigationFrame, "Select the events that you want to see in the System Log", "Select View", JOptionPane.INFORMATION_MESSAGE);
+						return;
+				}
+				
+				LibrarySystem.FrameItems.systemLogPanelItems.systemlog_textarea.setText(null);
+				
+				readFromFile();
+				
+				LibrarySystem.FrameItems.systemLogPanelItems.print_btn.setEnabled(true);
+		}
+		
+		private void readFromFile()
+		{
+				try
+				{
+						FileInputStream fin = new FileInputStream(LibrarySystem.SystemLogFile);
+						
+						Scanner scanner = new Scanner(fin);
+						
+						SystemLogEvent event = new SystemLogEvent();
+						int i = 1;
+						
+						while(scanner.hasNextLine())
+						{
+								String line = scanner.nextLine();
+								
+								if(isValidLine(line) == false)
+								{
+										continue;
+								}
+								
+								if(LibrarySystem.FrameItems.systemLogPanelItems.logduration_combobox.getSelectedItem().toString() != "Entire System Log")
+								{
+										if(fallsWithinRange(line) == false)
+										{
+												continue;
+										}
+								}							
+								
+								event.EventID = getEventID(line);
+								event.Username = getUsername(line);
+								event.EventName = getEventName(line);
+								event.EventTime = getEventTime(line);
+								line = generateEventLine(event, i);
+								
+								LibrarySystem.FrameItems.systemLogPanelItems.systemlog_textarea.append(line);
+								
+								i++;
+								
+								LibrarySystem.FrameItems.systemLogPanelItems.searchprogress_progressbar.setValue(i);
+						}
+						
+						LibrarySystem.FrameItems.systemLogPanelItems.searchprogress_progressbar.setValue(LibrarySystem.FrameItems.systemLogPanelItems.searchprogress_progressbar.getMaximum());
+				}
+				catch(Exception ex)
+				{
+						LibrarySystem.errorLogWriter.addErrorLog(ex.toString(), LibrarySystem.ErrorLogFile);
+				}
+		}		
+		
+		private boolean fallsWithinRange(String line)
+		{
+				StringTokenizer tokenizer = new StringTokenizer(line, "`");
+				
+				tokenizer.nextToken();
+				tokenizer.nextToken();
+				tokenizer.nextToken();
+				
+				String date = tokenizer.nextToken();
+				
+				if(LibrarySystem.FrameItems.systemLogPanelItems.logduration_combobox.getSelectedItem().toString() == "Today")
+				{
+						if(fallsWithinToday(date) == true)
+						{
+								return true;
+						}
+				}
+				
+				else if(LibrarySystem.FrameItems.systemLogPanelItems.logduration_combobox.getSelectedItem().toString() == "This Week")
+				{
+						if(fallsInThisWeek(date) == true)
+						{
+								return true;
+						}
+				}
+				
+				else if(LibrarySystem.FrameItems.systemLogPanelItems.logduration_combobox.getSelectedItem().toString() == "This Month")
+				{
+						if(fallsInThisMonth(date) == true)
+						{
+								return true;
+						}
+				}
+				
+				else if(LibrarySystem.FrameItems.systemLogPanelItems.logduration_combobox.getSelectedItem().toString() == "This Year")
+				{
+						if(fallsInThisYear(date) == true)
+						{
+								return true;
+						}
+				}
+				
+				return false;
+		}
+		
+		private boolean fallsInThisWeek(String date)
+		{		
+				long EventMiliSeconds = getEventLogMiliSeconds(date);
+				long SundayMiliSeconds = getSundayMiliSeconds();
+				long SaturdayMiliSeconds = getSaturdayMiliSeconds();
+				
+				if(EventMiliSeconds >= SundayMiliSeconds)
+				{
+						if(EventMiliSeconds <= SaturdayMiliSeconds)
+						{
+								return true;
+						}
+				}
+				
+				return false;
+		}
+		
+		private long getSaturdayMiliSeconds()
+		{
+				Date date = new Date();
+				
+				SimpleDateFormat format=new SimpleDateFormat("EEE");
+				
+				String day = format.format(date);
+				
+				int index = getDayIndex(day);
+				
+				Date  Saturday = getDate(7 - index);
+				
+				SimpleDateFormat format2 =new SimpleDateFormat("dd-MM-yyyy H:m:s");
+				
+				System.out.println(Saturday.getTime());
+				
+				return Saturday.getTime();
+		}
+		
+		private long getSundayMiliSeconds()
+		{
+				Date date = new Date();
+				
+				SimpleDateFormat format=new SimpleDateFormat("EEE");
+				
+				String day=format.format(date);
+				
+				int index = getDayIndex(day);
+				
+				Date  Sunday=getDate(1-index);
+				
+				SimpleDateFormat format2 =new SimpleDateFormat("dd-MM-yyyy H:m:s");
+				
+				System.out.println(Sunday.getTime());
+				
+				return Sunday.getTime();
+		}
+		
+		private long getEventLogMiliSeconds(String date)
+		{
+				StringTokenizer tokenizer = new StringTokenizer(date, " ");
+				
+				tokenizer.nextToken();		
+				
+				String token = tokenizer.nextToken();				
+				String month = getMonth(token);
+				String day = tokenizer.nextToken();			
+				String ClockTime = tokenizer.nextToken();	
+				
+				tokenizer.nextToken();			
+				
+				String year = tokenizer.nextToken();
+				
+				String LogDate = day + "-" + month + "-" + year;
+				
+				SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+				
+				Date EventLogDate = null;
+				
+				try
+				{
+						 EventLogDate = formatter.parse(LogDate);
+				}
+				catch(Exception ex)
+				{
+						LibrarySystem.errorLogWriter.addErrorLog(ex.toString(), LibrarySystem.ErrorLogFile);
+				}
+				
+				long MilliSeconds = EventLogDate.getTime() + getOffset(ClockTime);
+				
+				return MilliSeconds;
+		}
+		
+		private long getOffset(String EventTime)
+		{
+				StringTokenizer tokenizer = new StringTokenizer(EventTime, ":");
+				
+				int hours = Integer.parseInt(tokenizer.nextToken());
+				
+				int minutes = Integer.parseInt(tokenizer.nextToken());
+				
+				int seconds = Integer.parseInt(tokenizer.nextToken());
+				
+				long offset = (seconds + ((minutes * 60) + (hours * 3600))) * 1000;
+				
+				return offset;
+		}
+		
+		private int  getDayIndex(String s)
+		{
+				String day[]={"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
+				
+				for(int i=0;i<7;i++)
+				{
+						if(day[i].equals(s))
+						{
+								return i+1;
+						}
+				}
+				
+				return 0;
+		}
+		
+		private Date getDate(int index) 
+		{
+				Date d=new Date(System.currentTimeMillis()+index*24*60*60*1000);
+				SimpleDateFormat format = new SimpleDateFormat("MMM dd, yyyy");
+				String s= format.format(d);
+				try
+				{
+						return format.parse(s);
+				}
+				catch(Exception e)
+				{
+						e.printStackTrace();
+				}
+				return new Date();
+		}
+		
+		
+		
+		private boolean fallsInThisYear(String date)
+		{
+				StringTokenizer tokenizer = new StringTokenizer(date, " ");
+				
+				tokenizer.nextToken();
+				tokenizer.nextToken();
+				tokenizer.nextToken();
+				tokenizer.nextToken();
+				tokenizer.nextToken();
+				
+				String LogYear = tokenizer.nextToken();
+				
+				SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+				
+				Date Today = new Date();
+				
+				String CurrentDate = formatter.format(Today);
+				
+				String CurrentYear = CurrentDate.substring(6, 10);
+				
+				if(LogYear.equals(CurrentYear))
+				{
+						return true;
+				}
+				
+				return false;
+}
+		
+		private boolean fallsInThisMonth(String date)
+		{
+				StringTokenizer tokenizer = new StringTokenizer(date, " ");
+				
+				tokenizer.nextToken();
+				
+				String token = tokenizer.nextToken();
+				
+				String LogMonth = getMonth(token);
+				
+				SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+				
+				Date Today = new Date();
+				
+				String CurrentDate = formatter.format(Today);
+				
+				String CurrentMonth = CurrentDate.substring(3, 5);
+				
+				if(LogMonth.equals(CurrentMonth))
+				{
+						return true;
+				}
+				
+				return false;
+		}
+		
+		private boolean fallsWithinToday(String date)
+		{
+				StringTokenizer tokenizer = new StringTokenizer(date, " ");
+				
+				tokenizer.nextToken();
+				
+				String token = tokenizer.nextToken();
+				
+				String month = getMonth(token);
+				String day = tokenizer.nextToken();				
+				
+				tokenizer.nextToken();
+				tokenizer.nextToken();
+				
+				String year = tokenizer.nextToken();
+				
+				String LogDate = day + "-" + month + "-" + year;
+				
+				SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+				
+				Date Today = new Date();
+				
+				String CurrentDate = formatter.format(Today);
+				
+				if(LogDate.equals(CurrentDate))
+				{
+						return true;
+				}
+				
+				return false;
+		}
+		
+		private boolean isValidLine(String line)
+		{
+				StringTokenizer tokenizer = new StringTokenizer(line, "`");
+				
+				int ID = Integer.parseInt(tokenizer.nextToken());
+				
+				if(LibrarySystem.FrameItems.systemLogPanelItems.selectall_checkbox.isSelected() == true)
+				{
+						return true;
+				}
+				
+				if(LibrarySystem.FrameItems.systemLogPanelItems.viewlogonlogofflog_checkbox.isSelected() == true)
+				{
+						if(ID == 1)
+						{
+								return true;
+						}						
+				}
+				if(LibrarySystem.FrameItems.systemLogPanelItems.viewapplicationlockopenlog_checkbox.isSelected() == true)
+				{
+						if(ID == 2)
+						{
+								return true;
+						}
+				}
+				if(LibrarySystem.FrameItems.systemLogPanelItems.systemlogclearance_checkbox.isSelected() == true)
+				{
+						if(ID == 3)
+						{
+								return true;
+						}
+				}
+				if(LibrarySystem.FrameItems.systemLogPanelItems.viewdataentrylog_checkbox.isSelected() == true)
+				{
+						if(ID == 4)
+						{
+								return true;
+						}
+				}
+				if(LibrarySystem.FrameItems.systemLogPanelItems.viewdataupdatelog_checkbox.isSelected() == true)
+				{
+						if(ID == 5)
+						{
+								return true;
+						}
+				}
+				if(LibrarySystem.FrameItems.systemLogPanelItems.viewdatadeletelog_checkbox.isSelected() == true)
+				{
+						if(ID == 6)
+						{
+								return true;
+						}
+				}
+				if(LibrarySystem.FrameItems.systemLogPanelItems.viewdatasearchlog_checkbox.isSelected() == true)
+				{
+						if(ID == 7)
+						{
+								return true;
+						}
+				}
+				if(LibrarySystem.FrameItems.systemLogPanelItems.viewsettingschangelog_checkbox.isSelected() == true)
+				{
+						if(ID == 8)
+						{
+								return true;
+						}
+				}
+				
+				if(ID == 9)
+				{
+						return true;
+				}
+				
+				return false;
+		}
+		
+		private boolean checkSelections()
+		{
+				if(LibrarySystem.FrameItems.systemLogPanelItems.selectall_checkbox.isSelected() == true)
+				{
+						return true;
+				}
+				if(LibrarySystem.FrameItems.systemLogPanelItems.viewlogonlogofflog_checkbox.isSelected() == true)
+				{
+						return true;
+				}
+				if(LibrarySystem.FrameItems.systemLogPanelItems.viewapplicationlockopenlog_checkbox.isSelected() == true)
+				{
+						return true;
+				}
+				if(LibrarySystem.FrameItems.systemLogPanelItems.systemlogclearance_checkbox.isSelected() == true)
+				{
+						return true;
+				}
+				if(LibrarySystem.FrameItems.systemLogPanelItems.viewdataentrylog_checkbox.isSelected() == true)
+				{
+						return true;
+				}
+				if(LibrarySystem.FrameItems.systemLogPanelItems.viewdataupdatelog_checkbox.isSelected() == true)
+				{
+						return true;
+				}
+				if(LibrarySystem.FrameItems.systemLogPanelItems.viewdatadeletelog_checkbox.isSelected() == true)
+				{
+						return true;
+				}
+				if(LibrarySystem.FrameItems.systemLogPanelItems.viewdatasearchlog_checkbox.isSelected() == true)
+				{
+						return true;
+				}
+				if(LibrarySystem.FrameItems.systemLogPanelItems.viewsettingschangelog_checkbox.isSelected() == true)
+				{
+						return true;
+				}
+				
+				return false;
+		}
+		
+		private String getMonth(String month)
+		{
+				String MonthNumber = "01";
+				
+				if(month.equals("Jan"))
+				{
+						MonthNumber = "01";
+				}
+				if(month.equals("Feb"))
+				{
+						MonthNumber = "02";
+				}
+				if(month.equals("Mar"))
+				{
+						MonthNumber = "03";
+				}
+				if(month.equals("Apr"))
+				{
+						MonthNumber = "04";
+				}
+				if(month.equals("May"))
+				{
+						MonthNumber = "05";
+				}
+				if(month.equals("Jun"))
+				{
+						MonthNumber = "06";
+				}
+				if(month.equals("Jul"))
+				{
+						MonthNumber = "07";
+				}
+				if(month.equals("Aug"))
+				{
+						MonthNumber = "08";
+				}
+				if(month.equals("Sep"))
+				{
+						MonthNumber = "09";
+				}
+				if(month.equals("Oct"))
+				{
+						MonthNumber = "10";
+				}
+				if(month.equals("Nov"))
+				{
+						MonthNumber = "11";
+				}
+				if(month.equals("Dec"))
+				{
+						MonthNumber = "12";
+				}
+				
+				return MonthNumber;
+		}
+		
+		private String generateEventLine(SystemLogEvent event, int i)
+		{
+				String line = "";
+				
+				if(event.EventID != 1 && event.EventID != 2 && event.EventID != 3 && event.EventID != 9)
+				{
+						line = "    |---> " + i + ". ";
+				}	
+				else
+				{
+						line = i + ". ";
+				}
+				
+				line = line + event.EventName + " by User : " + event.Username + " at Time : " + event.EventTime + "\n\n";
+				
+				if(event.EventID == 1 && event.EventID == 2 && event.EventID == 3 && event.EventID == 9)
+				{
+						line = line + "\n";
+				}
+				
+				return line;
+		}
+		
+		private String getEventTime(String line)
+		{
+				StringTokenizer tokenizer = new StringTokenizer(line, "`");
+				
+				tokenizer.nextToken();
+				tokenizer.nextToken();
+				tokenizer.nextToken();
+				
+				return tokenizer.nextToken();
+		}
+		
+		private String getEventName(String line)
+		{
+				StringTokenizer tokenizer = new StringTokenizer(line, "`");
+				
+				tokenizer.nextToken();
+				tokenizer.nextToken();
+				
+				return tokenizer.nextToken();
+		}
+		
+		private String getUsername(String line)
+		{
+				StringTokenizer tokenizer = new StringTokenizer(line, "`");
+				
+				tokenizer.nextToken();
+				
+				return tokenizer.nextToken();
+		}
+		
+		private int getEventID(String Line)
+		{
+				StringTokenizer tokenizer = new StringTokenizer(Line, "`");
+				
+				int ID = Integer.parseInt(tokenizer.nextToken());
+				
+				return ID;
+		}
+}

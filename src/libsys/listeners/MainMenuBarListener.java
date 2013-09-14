@@ -1,0 +1,523 @@
+package libsys.listeners;
+
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
+import java.util.Date;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import libsys.general.LIBSYSSystem;
+import libsys.general.utilities.SystemLogEvent;
+import libsys.gui.MyFrame;
+import libsys.gui.items.CalculatorFrameItems;
+import libsys.gui.items.SettingsFrameItems;
+
+public class MainMenuBarListener implements ActionListener
+{
+		LIBSYSSystem LibrarySystem;
+		
+		public MainMenuBarListener(LIBSYSSystem LibrarySystem)
+		{
+				this.LibrarySystem = LibrarySystem;
+		}
+		
+		public void actionPerformed(ActionEvent ae)
+		{
+				if(ae.getActionCommand().equals("Calculator"))
+				{
+						if(!LibrarySystem.VisibleFrameList.contains(LibrarySystem.FrameList.CalculatorFrame))
+						{
+								LibrarySystem.VisibleFrameList.add(LibrarySystem.FrameList.CalculatorFrame);
+						}
+						
+						launchCalculator();
+				}
+				
+				else if(ae.getActionCommand().equals("Settings"))
+				{
+						if(!LibrarySystem.VisibleFrameList.contains(LibrarySystem.FrameList.SettingsFrame))
+						{
+								LibrarySystem.VisibleFrameList.add(LibrarySystem.FrameList.SettingsFrame);
+						}
+						
+						launchSettings();
+				}
+				
+				else if(ae.getActionCommand().equals("Query Browser"))
+				{
+						launchQueryBrowser();
+				}
+				
+				else if(ae.getActionCommand().equals("Add Guest Account"))
+				{
+						if(!LibrarySystem.VisibleFrameList.contains(LibrarySystem.FrameList.AccountsManagerFrame))
+						{
+								LibrarySystem.VisibleFrameList.add(LibrarySystem.FrameList.AccountsManagerFrame);
+						}
+						
+						launchAddAccountsManager();
+				}
+				
+				else if(ae.getActionCommand().equals("Edit Current Account"))
+				{
+						if(!LibrarySystem.VisibleFrameList.contains(LibrarySystem.FrameList.AccountsManagerFrame))
+						{
+								LibrarySystem.VisibleFrameList.add(LibrarySystem.FrameList.AccountsManagerFrame);
+						}
+						
+						launchEditAccountsManager();
+				}
+				
+				else if(ae.getActionCommand().equals("Delete Existing Guest Account"))
+				{
+						try
+						{
+								if(LibrarySystem.loginManager.isUserGuest(LibrarySystem.current, LibrarySystem.GuestFile) == true)
+								{
+										JOptionPane.showMessageDialog(LibrarySystem.FrameList.NavigationFrame, "User Access Control prevents you to Connect to Database Server. Please log into an administrator account to do so");
+								
+										return;
+								}
+						}
+						catch(Exception ex)
+						{
+								LibrarySystem.errorLogWriter.addErrorLog(ex.toString(), LibrarySystem.ErrorLogFile);
+								return;
+						}
+						
+						if(!LibrarySystem.VisibleFrameList.contains(LibrarySystem.FrameList.AccountsManagerFrame))
+						{
+								LibrarySystem.VisibleFrameList.add(LibrarySystem.FrameList.AccountsManagerFrame);
+						}
+						
+						launchDeleteAccountsManager();
+				}
+				
+				else if(ae.getActionCommand().equals("Log Off"))
+				{					
+						if(confirmLogOff() == false)
+						{
+								return;
+						}
+						
+						LibrarySystem.systemResetter.resetLIBSYS();
+						LibrarySystem.itemDisabler.disableLIBSYSItems();
+						
+						LibrarySystem.FrameItems.loginFrameItems.username_txt.setText(null);
+						LibrarySystem.FrameItems.loginFrameItems.password_password.setText(null);
+						
+						LibrarySystem.FrameItems.loginFrameItems.username_txt.setEditable(true);
+						
+						LibrarySystem.FrameList.hideAllFrames();
+						
+						LibrarySystem.FrameList.LoginFrame.setVisible(true);
+				}
+				
+				else if(ae.getActionCommand().equals("Lock LibrarySystem"))
+				{				
+						if(confirmLock() == false)
+						{
+								return;
+						}
+						
+						LibrarySystem.FrameList.hideAllFrames();
+						
+						SystemLogEvent event = new SystemLogEvent();
+						Date d = new Date();
+						
+						event.EventID = 2;
+						event.EventName = "LibrarySystem Locked.";
+						event.Username = LibrarySystem.current;
+						event.EventTime = d.toString();
+						
+						LibrarySystem.systemLogManager.addEventToLogFile(event, LibrarySystem.SystemLogFile);
+						
+						LibrarySystem.FrameItems.loginFrameItems.username_txt.setText(LibrarySystem.current);
+						LibrarySystem.FrameItems.loginFrameItems.username_txt.setEditable(false);
+						LibrarySystem.FrameItems.loginFrameItems.username_txt.setBackground(Color.WHITE);
+						
+						LibrarySystem.FrameItems.loginFrameItems.password_password.setText(null);
+						
+						LibrarySystem.FrameList.LoginFrame.setVisible(true);
+						LibrarySystem.VisibleFrameList.add(LibrarySystem.FrameList.LoginFrame);
+				}
+				
+				else if(ae.getActionCommand().equals("Exit"))
+				{
+						confirmAndExit();
+				}
+				
+				else if(ae.getActionCommand().equals("Register a MySQL Database Account"))
+				{
+						try
+						{
+								if(LibrarySystem.loginManager.isUserGuest(LibrarySystem.current, LibrarySystem.GuestFile) == true)
+								{
+										JOptionPane.showMessageDialog(LibrarySystem.FrameList.NavigationFrame, "User Access Control prevents you to Register a MySQL Database Account. Please log into an administrator account to do so");
+								
+										return;
+								}
+						}
+						catch(Exception ex)
+						{
+								LibrarySystem.errorLogWriter.addErrorLog(ex.toString(), LibrarySystem.ErrorLogFile);
+								return;
+						}
+						
+						LibrarySystem.FrameList.MySQLFrame.setVisible(true);
+						
+						if(LibrarySystem.VisibleFrameList.contains(LibrarySystem.FrameList.MySQLFrame) == false)
+						{
+								LibrarySystem.VisibleFrameList.add(LibrarySystem.FrameList.MySQLFrame);
+						}
+								
+						return;
+				}
+				
+				else if(ae.getActionCommand().equals("Start Database Server"))
+				{
+						try
+						{
+								if(LibrarySystem.loginManager.isUserGuest(LibrarySystem.current, LibrarySystem.GuestFile) == true)
+								{
+										JOptionPane.showMessageDialog(LibrarySystem.FrameList.NavigationFrame, "User Access Control prevents you to Start Database Server. Please log into an administrator account to do so");
+								
+										return;
+								}
+						}
+						catch(Exception ex)
+						{
+								LibrarySystem.errorLogWriter.addErrorLog(ex.toString(), LibrarySystem.ErrorLogFile);
+								return;
+						}
+						
+						if(LibrarySystem.CommandExecutor.startDatabaseServer() == false)
+						{
+								return;
+						}
+						
+						JOptionPane.showMessageDialog(LibrarySystem.FrameList.NavigationFrame, "Database was started successfully");
+				}
+				
+				else if(ae.getActionCommand().equals("Stop Database Server"))
+				{
+						try
+						{
+								if(LibrarySystem.loginManager.isUserGuest(LibrarySystem.current, LibrarySystem.GuestFile) == true)
+								{
+										JOptionPane.showMessageDialog(LibrarySystem.FrameList.NavigationFrame, "User Access Control prevents you to Stop Database Server. Please log into an administrator account to do so");
+								
+										return;
+								}
+						}
+						catch(Exception ex)
+						{
+								LibrarySystem.errorLogWriter.addErrorLog(ex.toString(), LibrarySystem.ErrorLogFile);
+								return;
+						}
+						
+						if(LibrarySystem.CommandExecutor.stopDatabaseServer() == false)
+						{
+								return;
+						}
+						
+						JOptionPane.showMessageDialog(LibrarySystem.FrameList.NavigationFrame, "Database was stopped successfully");
+				}
+				
+				else if(ae.getActionCommand().equals("Backup Entire Database"))
+				{
+						try
+						{
+								if(LibrarySystem.loginManager.isUserGuest(LibrarySystem.current, LibrarySystem.GuestFile) == true)
+								{
+										JOptionPane.showMessageDialog(LibrarySystem.FrameList.NavigationFrame, "User Access Control prevents you to Backup Entire Database. Please log into an administrator account to do so");
+								
+										return;
+								}
+						}
+						catch(Exception ex)
+						{
+								LibrarySystem.errorLogWriter.addErrorLog(ex.toString(), LibrarySystem.ErrorLogFile);
+								return;
+						}
+						
+						File f = new File(LibrarySystem.MySQLFile);
+						
+						if(f.exists() == false)
+						{
+								if(!LibrarySystem.VisibleFrameList.contains(LibrarySystem.FrameList.MySQLFrame))
+								{
+										LibrarySystem.VisibleFrameList.add(LibrarySystem.FrameList.MySQLFrame);
+								}
+								
+								LibrarySystem.FrameList.MySQLFrame.setVisible(true);
+								
+								return;
+						}
+						
+						int choice = LibrarySystem.FileChooser.showSaveDialog(LibrarySystem.FrameList.NavigationFrame);
+						
+						if(choice == JFileChooser.APPROVE_OPTION)
+						{
+								File f2 = LibrarySystem.FileChooser.getSelectedFile();
+								
+								String p = f2.getAbsolutePath();
+								
+								if(f2.exists())
+								{
+										int option = JOptionPane.showConfirmDialog(LibrarySystem.FrameList.NavigationFrame, f2.getName() + " already exist. Overwrite file?");
+										
+										if((option == JOptionPane.YES_OPTION) || (option == JOptionPane.OK_OPTION))
+										{
+												LibrarySystem.CommandExecutor.backupDatabase(p);
+												
+												JOptionPane.showMessageDialog(LibrarySystem.FrameList.NavigationFrame, "The database was backed up successfully.");
+												
+												return;
+										}
+										else
+										{
+												return;
+										}
+								}
+								else
+								{
+										LibrarySystem.CommandExecutor.backupDatabase(p);
+										
+										JOptionPane.showMessageDialog(LibrarySystem.FrameList.NavigationFrame, "The database was backed up successfully.");
+												
+										return;
+								}
+						}
+						else
+						{
+								return;
+						}
+				}
+				
+				else if(ae.getActionCommand().equals("Load Database from Backup File"))
+				{
+						try
+						{
+								if(LibrarySystem.loginManager.isUserGuest(LibrarySystem.current, LibrarySystem.GuestFile) == true)
+								{
+										JOptionPane.showMessageDialog(LibrarySystem.FrameList.NavigationFrame, "User Access Control prevents you to Load Database from Backup File. Please log into an administrator account to do so");
+								
+										return;
+								}
+						}
+						catch(Exception ex)
+						{
+								LibrarySystem.errorLogWriter.addErrorLog(ex.toString(), LibrarySystem.ErrorLogFile);
+								return;
+						}
+						
+						File f = new File(LibrarySystem.MySQLFile);
+						
+						if(f.exists() == false)
+						{
+								if(!LibrarySystem.VisibleFrameList.contains(LibrarySystem.FrameList.MySQLFrame))
+								{
+										LibrarySystem.VisibleFrameList.add(LibrarySystem.FrameList.MySQLFrame);
+								}
+								
+								LibrarySystem.FrameList.MySQLFrame.setVisible(true);
+								
+								return;
+						}
+						
+						int result = LibrarySystem.FileChooser.showDialog(LibrarySystem.FrameList.NavigationFrame, "Upload");
+						
+						if(result == JFileChooser.APPROVE_OPTION)
+						{
+								String path = LibrarySystem.FileChooser.getSelectedFile().getPath();
+								
+								if(path.length() == 0)
+								{
+										return;
+								}
+								
+								f = LibrarySystem.FileChooser.getSelectedFile();
+								
+								if(f.exists() == false)
+								{
+										JOptionPane.showMessageDialog(LibrarySystem.FrameList.NavigationFrame, "Choose a valid Backup File");
+										return;
+								}
+								
+								LibrarySystem.CommandExecutor.loadBackup(path);
+								
+								JOptionPane.showMessageDialog(LibrarySystem.FrameList.NavigationFrame, "The Backup was loaded successfully.");
+						}
+				}
+				
+				else if(ae.getActionCommand().equals("Help Contents"))
+				{
+						LibrarySystem.CommandExecutor.runHelpFile(LibrarySystem.LIBSYSHelpFile);
+				}
+				
+				else if(ae.getActionCommand().equals("About LibrarySystem"))
+				{
+						LibrarySystem.FrameList.AboutLIBSYSFrame.setVisible(true);
+						
+						if(LibrarySystem.VisibleFrameList.contains(LibrarySystem.FrameList.AboutLIBSYSFrame) == false)
+						{
+								LibrarySystem.VisibleFrameList.add(LibrarySystem.FrameList.AboutLIBSYSFrame);
+						}
+				}
+				
+				else if(ae.getActionCommand().equals("Clear System Log"))
+				{
+						try
+						{
+								if(LibrarySystem.loginManager.isUserGuest(LibrarySystem.current, LibrarySystem.GuestFile) == true)
+								{
+										JOptionPane.showMessageDialog(LibrarySystem.FrameList.NavigationFrame, "User Access Control prevents you to clear the system log. Please log into an administrator account to do so");
+								
+										return;
+								}
+						}
+						catch(Exception ex)
+						{
+								LibrarySystem.errorLogWriter.addErrorLog(ex.toString(), LibrarySystem.ErrorLogFile);
+								return;
+						}
+						
+						int choice = JOptionPane.showConfirmDialog(LibrarySystem.FrameList.NavigationFrame, "Are you sure you want to clear  the entire system log?", "Confirm Clear", JOptionPane.YES_NO_CANCEL_OPTION);
+						
+						if(choice == JOptionPane.YES_OPTION)
+						{
+								
+								try
+								{
+										FileOutputStream fout = new FileOutputStream(LibrarySystem.SystemLogFile, false);
+										
+										PrintWriter p = new PrintWriter(fout, true);
+										
+										Date d = new Date();
+										
+										String line = "3`" + LibrarySystem.current + "`System Log Cleared`" + d.toString();
+										
+										p.println(line);
+										
+										fout.close();
+								}
+								catch(Exception ex)
+								{
+										LibrarySystem.errorLogWriter.addErrorLog(ex.toString(), LibrarySystem.ErrorLogFile);
+								}
+								
+								JOptionPane.showMessageDialog(LibrarySystem.FrameList.NavigationFrame, "System Log was cleared successfully");
+								
+								return;
+						}
+				}
+		}
+		
+		private boolean confirmLock()
+		{
+				int choice = JOptionPane.showConfirmDialog(LibrarySystem.FrameList.NavigationFrame, "<html><body>&nbsp&nbsp&nbsp Are you sure you want to Lock LibrarySystem? <br>Other users will not be able to unlock LIBSYS</body></html>", "Confirm Lock", JOptionPane.YES_NO_CANCEL_OPTION);
+				
+				if(choice == JOptionPane.YES_OPTION)
+				{
+						SystemLogEvent event = new SystemLogEvent();
+						Date d = new Date();
+						
+						event.EventID = 1;
+						event.EventName = "LibrarySystem Log Off.";
+						event.Username = LibrarySystem.current;
+						event.EventTime = d.toString();
+						
+						LibrarySystem.systemLogManager.addEventToLogFile(event, LibrarySystem.SystemLogFile);
+						
+						return true;
+				}
+				
+				return false;
+		}
+		
+		private boolean confirmLogOff()
+		{
+				int choice = JOptionPane.showConfirmDialog(LibrarySystem.FrameList.NavigationFrame, "Are you sure you want to Log Off LibrarySystem?", "Confirm Log Off", JOptionPane.YES_NO_CANCEL_OPTION);
+				
+				if(choice == JOptionPane.YES_OPTION)
+				{
+						SystemLogEvent event = new SystemLogEvent();
+						Date d = new Date();
+						
+						event.EventID = 1;
+						event.EventName = "LibrarySystem Log Off.";
+						event.Username = LibrarySystem.current;
+						event.EventTime = d.toString();
+						
+						LibrarySystem.systemLogManager.addEventToLogFile(event, LibrarySystem.SystemLogFile);
+						
+						return true;
+				}
+				
+				return false;
+		}
+		
+		private void confirmAndExit()
+		{
+				int choice = JOptionPane.showConfirmDialog(LibrarySystem.FrameList.NavigationFrame, "Are you sure you want to exit LibrarySystem?", "Confirm Exit", JOptionPane.YES_NO_CANCEL_OPTION);
+				
+				if(choice == JOptionPane.YES_OPTION)
+				{
+						SystemLogEvent event = new SystemLogEvent();
+						Date d = new Date();
+						
+						event.EventID = 1;
+						event.EventName = "LibrarySystem Exit.";
+						event.Username = LibrarySystem.current;
+						event.EventTime = d.toString();
+						
+						LibrarySystem.systemLogManager.addEventToLogFile(event, LibrarySystem.SystemLogFile);
+						
+						System.exit(0);
+				}
+		}
+		
+		private void launchDeleteAccountsManager()
+		{
+				LibrarySystem.loadDeleteAccountPanel();
+				LibrarySystem.FrameList.AccountsManagerFrame.setVisible(true);
+				LibrarySystem.FrameList.AccountsManagerFrame.requestFocus();
+		}
+		
+		private void launchEditAccountsManager()
+		{
+				LibrarySystem.loadEditAccountPanel();
+				LibrarySystem.FrameList.AccountsManagerFrame.setVisible(true);
+				LibrarySystem.FrameList.AccountsManagerFrame.requestFocus();
+		}
+		
+		private void launchAddAccountsManager()
+		{
+				LibrarySystem.loadAddAccountPanel();
+				LibrarySystem.FrameList.AccountsManagerFrame.setVisible(true);
+				LibrarySystem.FrameList.AccountsManagerFrame.requestFocus();
+		}
+		
+		private void launchQueryBrowser()
+		{
+				LibrarySystem.loadQueryBrowserPanel();
+				LibrarySystem.systemResetter.resetNavigationFrame();
+		}
+		
+		private void launchSettings()
+		{
+				LibrarySystem.FrameList.SettingsFrame.setVisible(true);		
+				LibrarySystem.FrameList.SettingsFrame.requestFocus();
+		}	
+		
+		private void launchCalculator()
+		{
+				LibrarySystem.FrameList.CalculatorFrame.setVisible(true);
+				LibrarySystem.FrameList.CalculatorFrame.requestFocus();
+		}		
+}

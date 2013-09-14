@@ -1,0 +1,137 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/Source/!svn/ver/129/src/libsys/general
+END
+Designer.java
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/Source/!svn/ver/1/src/libsys/general/Designer.java
+END
+ButtonListeners.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/Source/!svn/ver/133/src/libsys/general/ButtonListeners.java
+END
+SystemSettings.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/Source/!svn/ver/1/src/libsys/general/SystemSettings.java
+END
+BooksData.java
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/Source/!svn/ver/1/src/libsys/general/BooksData.java
+END
+Listeners.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/Source/!svn/ver/121/src/libsys/general/Listeners.java
+END
+TransactionsPanelDesigner.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/Source/!svn/ver/99/src/libsys/general/TransactionsPanelDesigner.java
+END
+LIBSYSSystem.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/Source/!svn/ver/133/src/libsys/general/LIBSYSSystem.java
+END
+FrameDesigner.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Source/!svn/ver/121/src/libsys/general/FrameDesigner.java
+END
+AccountsManagerPanelDesigner.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/Source/!svn/ver/86/src/libsys/general/AccountsManagerPanelDesigner.java
+END
+BorrowersData.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Source/!svn/ver/1/src/libsys/general/BorrowersData.java
+END
+AllFrameList.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/Source/!svn/ver/114/src/libsys/general/AllFrameList.java
+END
+PanelDesigner.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Source/!svn/ver/1/src/libsys/general/PanelDesigner.java
+END
+Convert.java
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/Source/!svn/ver/129/src/libsys/general/Convert.java
+END
+NavigationPanelsDesigner.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/Source/!svn/ver/99/src/libsys/general/NavigationPanelsDesigner.java
+END
+SettingsPanelsDesigner.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/Source/!svn/ver/1/src/libsys/general/SettingsPanelsDesigner.java
+END
+ListenerAdder.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Source/!svn/ver/133/src/libsys/general/ListenerAdder.java
+END
+AllFrameItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/Source/!svn/ver/114/src/libsys/general/AllFrameItems.java
+END
+TextBoxListeners.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/Source/!svn/ver/133/src/libsys/general/TextBoxListeners.java
+END
+AccountRegistrationPanelDesigner.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/Source/!svn/ver/1/src/libsys/general/AccountRegistrationPanelDesigner.java
+END
+TreeListeners.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Source/!svn/ver/1/src/libsys/general/TreeListeners.java
+END
+ItemStateListeners.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/Source/!svn/ver/111/src/libsys/general/ItemStateListeners.java
+END
+KeyBoardListeners.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/Source/!svn/ver/1/src/libsys/general/KeyBoardListeners.java
+END

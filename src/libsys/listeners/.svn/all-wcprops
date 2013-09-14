@@ -1,0 +1,407 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/Source/!svn/ver/129/src/libsys/listeners
+END
+AllFinesButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/Source/!svn/ver/126/src/libsys/listeners/AllFinesButtonListener.java
+END
+TransactionPanelRadioButtonGroupListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/Source/!svn/ver/1/src/libsys/listeners/TransactionPanelRadioButtonGroupListener.java
+END
+FinePaymentBorrowerAccNumberTextBoxListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/Source/!svn/ver/128/src/libsys/listeners/FinePaymentBorrowerAccNumberTextBoxListener.java
+END
+WindowExitListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/Source/!svn/ver/75/src/libsys/listeners/WindowExitListener.java
+END
+UpdateBooksSearchButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/Source/!svn/ver/126/src/libsys/listeners/UpdateBooksSearchButtonListener.java
+END
+BorrowerRecordsBorrowerAccNumberTextBoxListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/Source/!svn/ver/99/src/libsys/listeners/BorrowerRecordsBorrowerAccNumberTextBoxListener.java
+END
+DeleteBooksDeleteSelectedtButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/Source/!svn/ver/132/src/libsys/listeners/DeleteBooksDeleteSelectedtButtonListener.java
+END
+SettingsFontSizeSpinnerListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/Source/!svn/ver/1/src/libsys/listeners/SettingsFontSizeSpinnerListener.java
+END
+CalculatorButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/Source/!svn/ver/129/src/libsys/listeners/CalculatorButtonListener.java
+END
+AllBooksDisplayButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/Source/!svn/ver/126/src/libsys/listeners/AllBooksDisplayButtonListener.java
+END
+UpdateBorrowersSearchTextBoxListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/Source/!svn/ver/92/src/libsys/listeners/UpdateBorrowersSearchTextBoxListener.java
+END
+DeleteAccountsButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/Source/!svn/ver/130/src/libsys/listeners/DeleteAccountsButtonListener.java
+END
+ReturnsPanelTransmitButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/Source/!svn/ver/132/src/libsys/listeners/ReturnsPanelTransmitButtonListener.java
+END
+UpdateBooksUpdateTextBoxListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/Source/!svn/ver/92/src/libsys/listeners/UpdateBooksUpdateTextBoxListener.java
+END
+WindowHideListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/Source/!svn/ver/1/src/libsys/listeners/WindowHideListener.java
+END
+ImposeFineCheckBoxListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/Source/!svn/ver/90/src/libsys/listeners/ImposeFineCheckBoxListener.java
+END
+UpdateBorrowersSubmitButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/Source/!svn/ver/132/src/libsys/listeners/UpdateBorrowersSubmitButtonListener.java
+END
+FineImposeImposeButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/Source/!svn/ver/110/src/libsys/listeners/FineImposeImposeButtonListener.java
+END
+SettingsFontStyleItemsListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/Source/!svn/ver/1/src/libsys/listeners/SettingsFontStyleItemsListener.java
+END
+CalendarGenerator.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/Source/!svn/ver/92/src/libsys/listeners/CalendarGenerator.java
+END
+FinePaymentButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/Source/!svn/ver/103/src/libsys/listeners/FinePaymentButtonListener.java
+END
+ViewSystemLogButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/Source/!svn/ver/126/src/libsys/listeners/ViewSystemLogButtonListener.java
+END
+NavigationTreeListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/Source/!svn/ver/130/src/libsys/listeners/NavigationTreeListener.java
+END
+SpecificDatePanelItemListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/Source/!svn/ver/99/src/libsys/listeners/SpecificDatePanelItemListener.java
+END
+InsertBooksSubmitButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/Source/!svn/ver/132/src/libsys/listeners/InsertBooksSubmitButtonListener.java
+END
+AllTransactionsDisplayButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/Source/!svn/ver/126/src/libsys/listeners/AllTransactionsDisplayButtonListener.java
+END
+DeleteBorrowersSearchButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/Source/!svn/ver/126/src/libsys/listeners/DeleteBorrowersSearchButtonListener.java
+END
+SystemLogCheckBoxListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/Source/!svn/ver/111/src/libsys/listeners/SystemLogCheckBoxListener.java
+END
+EditAccountButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/Source/!svn/ver/126/src/libsys/listeners/EditAccountButtonListener.java
+END
+MainMenuBarListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/Source/!svn/ver/132/src/libsys/listeners/MainMenuBarListener.java
+END
+UpdateBooksSubmitButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/Source/!svn/ver/132/src/libsys/listeners/UpdateBooksSubmitButtonListener.java
+END
+CalculatorKeyBoardListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/Source/!svn/ver/131/src/libsys/listeners/CalculatorKeyBoardListener.java
+END
+InsertBooksTextBoxListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/Source/!svn/ver/90/src/libsys/listeners/InsertBooksTextBoxListener.java
+END
+DeleteBooksSearchButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/Source/!svn/ver/126/src/libsys/listeners/DeleteBooksSearchButtonListener.java
+END
+DeleteBorrowersDeleteSelectedtButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/Source/!svn/ver/132/src/libsys/listeners/DeleteBorrowersDeleteSelectedtButtonListener.java
+END
+NewBorrowingsTransmitButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/Source/!svn/ver/132/src/libsys/listeners/NewBorrowingsTransmitButtonListener.java
+END
+InsertBorrowersTextBoxListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/Source/!svn/ver/90/src/libsys/listeners/InsertBorrowersTextBoxListener.java
+END
+PrintPreviewButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/Source/!svn/ver/133/src/libsys/listeners/PrintPreviewButtonListener.java
+END
+SearchBorrowersSearchButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/Source/!svn/ver/132/src/libsys/listeners/SearchBorrowersSearchButtonListener.java
+END
+RegisterAccountButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/Source/!svn/ver/126/src/libsys/listeners/RegisterAccountButtonListener.java
+END
+AllBorrowersDisplayButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/Source/!svn/ver/126/src/libsys/listeners/AllBorrowersDisplayButtonListener.java
+END
+AddUserAccountButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/Source/!svn/ver/126/src/libsys/listeners/AddUserAccountButtonListener.java
+END
+ColorChangePanelButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/Source/!svn/ver/1/src/libsys/listeners/ColorChangePanelButtonListener.java
+END
+SettingsFontsAndColorsChangePanelButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/Source/!svn/ver/1/src/libsys/listeners/SettingsFontsAndColorsChangePanelButtonListener.java
+END
+LoginFrameTextBoxListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/Source/!svn/ver/126/src/libsys/listeners/LoginFrameTextBoxListener.java
+END
+QueryBrowserButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/Source/!svn/ver/128/src/libsys/listeners/QueryBrowserButtonListener.java
+END
+InsertBorrowerSubmitButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/Source/!svn/ver/132/src/libsys/listeners/InsertBorrowerSubmitButtonListener.java
+END
+SettingsFrameButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/Source/!svn/ver/128/src/libsys/listeners/SettingsFrameButtonListener.java
+END
+CustomDateRangePanelItemsListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/Source/!svn/ver/99/src/libsys/listeners/CustomDateRangePanelItemsListener.java
+END
+QueryBrowserTextAreaListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/Source/!svn/ver/108/src/libsys/listeners/QueryBrowserTextAreaListener.java
+END
+UpdateBorrowersUpdateTextBoxListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/Source/!svn/ver/92/src/libsys/listeners/UpdateBorrowersUpdateTextBoxListener.java
+END
+UpdateBorrowersSearchButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/Source/!svn/ver/126/src/libsys/listeners/UpdateBorrowersSearchButtonListener.java
+END
+DeleteBorrowersSearchTextBoxListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/Source/!svn/ver/108/src/libsys/listeners/DeleteBorrowersSearchTextBoxListener.java
+END
+MySQLFrameButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/Source/!svn/ver/126/src/libsys/listeners/MySQLFrameButtonListener.java
+END
+NewBorrowingsBookAccNumberTextBoxListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/Source/!svn/ver/90/src/libsys/listeners/NewBorrowingsBookAccNumberTextBoxListener.java
+END
+FineImposeBorrowerAccNumberTextBoxListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/Source/!svn/ver/108/src/libsys/listeners/FineImposeBorrowerAccNumberTextBoxListener.java
+END
+SearchBorrowersSearchTextBoxListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/Source/!svn/ver/99/src/libsys/listeners/SearchBorrowersSearchTextBoxListener.java
+END
+LoginFrameButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/Source/!svn/ver/126/src/libsys/listeners/LoginFrameButtonListener.java
+END
+SettingsTreeListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/Source/!svn/ver/1/src/libsys/listeners/SettingsTreeListener.java
+END
+DeleteAccountsTextBoxListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/Source/!svn/ver/130/src/libsys/listeners/DeleteAccountsTextBoxListener.java
+END
+BorrowerRecordSearchButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/Source/!svn/ver/128/src/libsys/listeners/BorrowerRecordSearchButtonListener.java
+END
+TransactionsPanelButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/Source/!svn/ver/124/src/libsys/listeners/TransactionsPanelButtonListener.java
+END
+MyDocumentListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/Source/!svn/ver/108/src/libsys/listeners/MyDocumentListener.java
+END
+LoginFramePasswordTextBoxListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/Source/!svn/ver/133/src/libsys/listeners/LoginFramePasswordTextBoxListener.java
+END
+NewReturnsBookAccNumberTextBoxListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/Source/!svn/ver/99/src/libsys/listeners/NewReturnsBookAccNumberTextBoxListener.java
+END
+NewBorrowingsBorrowerAccNumberTextBoxListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/Source/!svn/ver/90/src/libsys/listeners/NewBorrowingsBorrowerAccNumberTextBoxListener.java
+END
+SearchBooksSearchButtonListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/Source/!svn/ver/132/src/libsys/listeners/SearchBooksSearchButtonListener.java
+END

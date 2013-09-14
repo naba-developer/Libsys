@@ -1,0 +1,129 @@
+package libsys.gui.items;
+
+import java.awt.Color;
+import javax.swing.JTable;
+
+public class BorrowerRecordsPanelItems
+{
+		public javax.swing.JPanel additonalparameter_panel;
+                public javax.swing.JLabel address_label;
+                public javax.swing.JTextArea address_textarea;
+                public javax.swing.JCheckBox alltransaction_checkbox;
+                public javax.swing.JLabel borroweraccno_label;
+                public javax.swing.JTextField borroweraccno_txt;
+                public javax.swing.JLabel borrowername_label;
+                public javax.swing.JTextField borrowername_txt;
+                public javax.swing.JScrollPane borrowerrecordsearch_scrollpane;
+                public javax.swing.ButtonGroup buttonGroup1;
+                public javax.swing.JCheckBox completedtransaction_checkbox;
+                public javax.swing.JLabel email_label;
+                public javax.swing.JTextField email_txt;
+                public javax.swing.JLabel imagedestination_label;
+                public javax.swing.JScrollPane jScrollPane1;
+                public javax.swing.JCheckBox pendingtransaction_checkbox;
+                public javax.swing.JButton print_btn;
+                public javax.swing.JButton search_btn;
+                public javax.swing.JPanel searchparameter_panel;
+                public javax.swing.JLabel searchprogress_label;
+                public javax.swing.JLabel searchresult_label;
+                public javax.swing.JPanel searchresult_panel;
+                public javax.swing.JProgressBar searchresult_progressbar;
+                public javax.swing.JPanel searchresultview_panel;
+                public javax.swing.JScrollPane serachresultview_scrollpane;
+                public javax.swing.JTextField borrowersex_txt;
+                public javax.swing.JLabel sex_label;
+                public javax.swing.JPanel workspaceborrowerrecordsearch_panel;
+		
+		public JTable ResultsTable;
+		
+		public BorrowerRecordsPanelItems()
+		{
+				buttonGroup1 = new javax.swing.ButtonGroup();
+                                borrowerrecordsearch_scrollpane = new javax.swing.JScrollPane();
+                                workspaceborrowerrecordsearch_panel = new javax.swing.JPanel();
+                                searchparameter_panel = new javax.swing.JPanel();
+                                borroweraccno_txt = new javax.swing.JTextField();
+                                borroweraccno_label = new javax.swing.JLabel();
+                                borrowername_txt = new javax.swing.JTextField();
+                                borrowername_label = new javax.swing.JLabel();
+                                search_btn = new javax.swing.JButton();
+                                additonalparameter_panel = new javax.swing.JPanel();
+                                borrowersex_txt = new javax.swing.JTextField();
+                                sex_label = new javax.swing.JLabel();
+                                email_txt = new javax.swing.JTextField();
+                                email_label = new javax.swing.JLabel();
+                                jScrollPane1 = new javax.swing.JScrollPane();
+                                address_textarea = new javax.swing.JTextArea();
+                                address_label = new javax.swing.JLabel();
+                                imagedestination_label = new javax.swing.JLabel();
+                                pendingtransaction_checkbox = new javax.swing.JCheckBox();
+                                completedtransaction_checkbox = new javax.swing.JCheckBox();
+                                alltransaction_checkbox = new javax.swing.JCheckBox();
+                                searchresult_panel = new javax.swing.JPanel();
+                                searchresult_label = new javax.swing.JLabel();
+                                searchresultview_panel = new javax.swing.JPanel();
+                                serachresultview_scrollpane = new javax.swing.JScrollPane();
+                                searchresult_progressbar = new javax.swing.JProgressBar();
+                                searchprogress_label = new javax.swing.JLabel();
+                                print_btn = new javax.swing.JButton();
+				
+				workspaceborrowerrecordsearch_panel.setBackground(new java.awt.Color(255, 255, 204));
+
+                                searchparameter_panel.setBackground(new java.awt.Color(204, 204, 255));
+
+                                borroweraccno_label.setText("Borrower Account Number :");
+
+                                borrowername_label.setText("Borrower Name :");
+
+                                search_btn.setBackground(new java.awt.Color(102, 102, 255));
+                                search_btn.setText("Search");
+				
+				additonalparameter_panel.setBackground(new java.awt.Color(204, 204, 255));
+
+                                sex_label.setText("Sex :");
+
+                                email_label.setText("Email :");
+
+                                address_textarea.setColumns(20);
+                                address_textarea.setRows(5);
+                                jScrollPane1.setViewportView(address_textarea);
+
+                                address_label.setText("Address :");
+
+                                imagedestination_label.setToolTipText("Image of the Borrower");
+                                imagedestination_label.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+                                pendingtransaction_checkbox.setBackground(new java.awt.Color(204, 204, 255));
+                                buttonGroup1.add(pendingtransaction_checkbox);
+                                pendingtransaction_checkbox.setText("Pending Transaction");
+
+                                completedtransaction_checkbox.setBackground(new java.awt.Color(204, 204, 255));
+                                buttonGroup1.add(completedtransaction_checkbox);
+                                completedtransaction_checkbox.setText("Completed Transaction");
+
+                                alltransaction_checkbox.setBackground(new java.awt.Color(204, 204, 255));
+                                buttonGroup1.add(alltransaction_checkbox);
+                                alltransaction_checkbox.setText("All Transaction");
+				
+				searchresult_panel.setBackground(new java.awt.Color(204, 204, 255));
+
+                                searchresult_label.setText("Search Result :");
+				
+				searchprogress_label.setText("Search Progress :");
+
+                                print_btn.setBackground(new java.awt.Color(102, 102, 255));
+                                print_btn.setText("Print");
+				
+				borrowerrecordsearch_scrollpane.setViewportView(workspaceborrowerrecordsearch_panel);
+				
+				borrowername_txt.setEditable(false);
+				borrowersex_txt.setEditable(false);
+				email_txt.setEditable(false);
+				address_textarea.setEditable(false);
+				
+				borrowername_txt.setBackground(Color.WHITE);
+				borrowersex_txt.setBackground(Color.WHITE);
+				email_txt.setBackground(Color.WHITE);
+				address_textarea.setBackground(Color.WHITE);
+		}
+}

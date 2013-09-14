@@ -1,0 +1,227 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/Source/!svn/ver/127/src/libsys/general/utilities
+END
+MySQLManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/Source/!svn/ver/133/src/libsys/general/utilities/MySQLManager.java
+END
+DeleteBooksSearchResultsTableModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/Source/!svn/ver/125/src/libsys/general/utilities/DeleteBooksSearchResultsTableModel.java
+END
+ForeGroundColorChanger.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/Source/!svn/ver/90/src/libsys/general/utilities/ForeGroundColorChanger.java
+END
+SystemCommandExecutor.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/Source/!svn/ver/132/src/libsys/general/utilities/SystemCommandExecutor.java
+END
+LoginManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/Source/!svn/ver/133/src/libsys/general/utilities/LoginManager.java
+END
+FinesPaymentSearchResultsTableModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/Source/!svn/ver/126/src/libsys/general/utilities/FinesPaymentSearchResultsTableModel.java
+END
+SearchBooksSearchResultsTableModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/Source/!svn/ver/126/src/libsys/general/utilities/SearchBooksSearchResultsTableModel.java
+END
+AllBooksDisplayResultsTableModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/Source/!svn/ver/126/src/libsys/general/utilities/AllBooksDisplayResultsTableModel.java
+END
+DeleteBorrowersSearchResultsTableModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/Source/!svn/ver/126/src/libsys/general/utilities/DeleteBorrowersSearchResultsTableModel.java
+END
+ImagePreviewer.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/Source/!svn/ver/13/src/libsys/general/utilities/ImagePreviewer.java
+END
+SearchBorrowersSearchResultsTableModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/Source/!svn/ver/126/src/libsys/general/utilities/SearchBorrowersSearchResultsTableModel.java
+END
+DataPrinter.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/Source/!svn/ver/125/src/libsys/general/utilities/DataPrinter.java
+END
+SystemLogManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/Source/!svn/ver/125/src/libsys/general/utilities/SystemLogManager.java
+END
+FileIconView.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/Source/!svn/ver/13/src/libsys/general/utilities/FileIconView.java
+END
+g.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Source/!svn/ver/126/src/libsys/general/utilities/g.java
+END
+UserAccountManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/Source/!svn/ver/1/src/libsys/general/utilities/UserAccountManager.java
+END
+ItemEnabler.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/Source/!svn/ver/124/src/libsys/general/utilities/ItemEnabler.java
+END
+SystemLogEvent.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/Source/!svn/ver/1/src/libsys/general/utilities/SystemLogEvent.java
+END
+DataFormatter.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/Source/!svn/ver/127/src/libsys/general/utilities/DataFormatter.java
+END
+AllFinesDisplayResultsTableModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/Source/!svn/ver/126/src/libsys/general/utilities/AllFinesDisplayResultsTableModel.java
+END
+SystemTimeManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/Source/!svn/ver/1/src/libsys/general/utilities/SystemTimeManager.java
+END
+AllTransactionsSearchResultsTableModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/Source/!svn/ver/126/src/libsys/general/utilities/AllTransactionsSearchResultsTableModel.java
+END
+SystemResetter.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/Source/!svn/ver/109/src/libsys/general/utilities/SystemResetter.java
+END
+PrintPreviewDocumentListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/Source/!svn/ver/122/src/libsys/general/utilities/PrintPreviewDocumentListener.java
+END
+ItemDisabler.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/Source/!svn/ver/114/src/libsys/general/utilities/ItemDisabler.java
+END
+BackGroundColorChanger.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/Source/!svn/ver/1/src/libsys/general/utilities/BackGroundColorChanger.java
+END
+QueryBrowserSearchResultsTableModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/Source/!svn/ver/126/src/libsys/general/utilities/QueryBrowserSearchResultsTableModel.java
+END
+ImageManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/Source/!svn/ver/90/src/libsys/general/utilities/ImageManager.java
+END
+AllBorrowersDisplayResultsTableModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/Source/!svn/ver/126/src/libsys/general/utilities/AllBorrowersDisplayResultsTableModel.java
+END
+BorrowerRcordsSearchResultsTableModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/Source/!svn/ver/126/src/libsys/general/utilities/BorrowerRcordsSearchResultsTableModel.java
+END
+UpdateBooksSearchResultsTableModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/Source/!svn/ver/126/src/libsys/general/utilities/UpdateBooksSearchResultsTableModel.java
+END
+SystemLogList.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/Source/!svn/ver/1/src/libsys/general/utilities/SystemLogList.java
+END
+UpdateBorrowersSearchResultsTableModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/Source/!svn/ver/126/src/libsys/general/utilities/UpdateBorrowersSearchResultsTableModel.java
+END
+ErrorLogWriter.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/Source/!svn/ver/133/src/libsys/general/utilities/ErrorLogWriter.java
+END
+MyFileFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/Source/!svn/ver/13/src/libsys/general/utilities/MyFileFilter.java
+END
+SettingsManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/Source/!svn/ver/125/src/libsys/general/utilities/SettingsManager.java
+END
+FontChanger.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/Source/!svn/ver/92/src/libsys/general/utilities/FontChanger.java
+END

@@ -1,0 +1,111 @@
+package libsys.gui.items;
+
+import java.awt.Color;
+
+public class FinesImposePanelItems 
+{
+		public javax.swing.JScrollPane ImposeFineScroll_Pane;
+                public javax.swing.JPanel WorkspaceImposeFine_Panel;
+                public javax.swing.JLabel borroweraccnumber_label;
+                public javax.swing.JTextField borroweraccnumber_txt;
+                public javax.swing.JLabel borroweraddress_label;
+                public javax.swing.JTextArea borroweraddress_textarea;
+                public javax.swing.JLabel borroweremail_label;
+                public javax.swing.JTextField borroweremail_txt;
+                public javax.swing.JLabel borrowername_label;
+                public javax.swing.JTextField borrowername_txt;
+                public javax.swing.JLabel borrowerphonenumber_label;
+                public javax.swing.JTextField borrowerphonenumber_txt;
+                public javax.swing.JLabel borrowersex_label;
+                public javax.swing.JTextField borrowersex_txt;
+                public javax.swing.JLabel fineamount_label;
+                public javax.swing.JTextField fineamount_txt;
+                public javax.swing.JLabel finereason_label;
+                public javax.swing.JTextArea finereason_textarea;
+                public javax.swing.JLabel imagedestination_label;
+                public javax.swing.JButton imposefine_btn;
+                public javax.swing.JLabel jLabel3;
+                public javax.swing.JScrollPane jScrollPane3;
+                public javax.swing.JScrollPane jScrollPane4;
+                public javax.swing.JCheckBox paynow_checkbox;
+                public javax.swing.JButton print_btn;
+		
+		public FinesImposePanelItems() 
+		{
+				ImposeFineScroll_Pane = new javax.swing.JScrollPane();
+                                WorkspaceImposeFine_Panel = new javax.swing.JPanel();
+                                borroweraccnumber_txt = new javax.swing.JTextField();
+                                borroweraccnumber_label = new javax.swing.JLabel();
+                                borrowername_label = new javax.swing.JLabel();
+                                borrowersex_txt = new javax.swing.JTextField();
+                                jLabel3 = new javax.swing.JLabel();
+                                borrowersex_label = new javax.swing.JLabel();
+                                borrowerphonenumber_txt = new javax.swing.JTextField();
+                                borrowerphonenumber_label = new javax.swing.JLabel();
+                                borroweremail_label = new javax.swing.JLabel();
+                                jScrollPane3 = new javax.swing.JScrollPane();
+                                borroweraddress_textarea = new javax.swing.JTextArea();
+                                borroweraddress_label = new javax.swing.JLabel();
+                                fineamount_txt = new javax.swing.JTextField();
+                                fineamount_label = new javax.swing.JLabel();
+                                jScrollPane4 = new javax.swing.JScrollPane();
+                                finereason_textarea = new javax.swing.JTextArea();
+                                finereason_label = new javax.swing.JLabel();
+                                imposefine_btn = new javax.swing.JButton();
+                                print_btn = new javax.swing.JButton();
+                                imagedestination_label = new javax.swing.JLabel();
+                                borrowername_txt = new javax.swing.JTextField();
+                                borroweremail_txt = new javax.swing.JTextField();
+                                paynow_checkbox = new javax.swing.JCheckBox();
+
+                                WorkspaceImposeFine_Panel.setBackground(new java.awt.Color(204, 204, 255));
+
+                                borroweraccnumber_label.setText("Enter The Borrower Account Number:");
+
+                                borrowername_label.setText("Borrower Name :");
+
+                                borrowersex_label.setText("Sex:");
+
+                                borrowerphonenumber_label.setText("Phone Number :");
+
+                                borroweremail_label.setText("Email :");
+
+                                borroweraddress_textarea.setColumns(20);
+                                borroweraddress_textarea.setRows(5);
+                                jScrollPane3.setViewportView(borroweraddress_textarea);
+
+                                borroweraddress_label.setText("Address :");
+
+                                fineamount_label.setText("Fine Amount :");
+
+                                finereason_textarea.setColumns(20);
+                                finereason_textarea.setRows(5);
+                                jScrollPane4.setViewportView(finereason_textarea);
+
+                                finereason_label.setText("Reason For Imposing Fine :");
+
+                                imposefine_btn.setText("Impose");
+
+                                print_btn.setText("Print");
+
+                                imagedestination_label.setToolTipText("Image of the Borrower");
+                                imagedestination_label.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+                                paynow_checkbox.setBackground(new java.awt.Color(204, 204, 255));
+                                paynow_checkbox.setText("Pay Now");
+				
+				ImposeFineScroll_Pane.setViewportView(WorkspaceImposeFine_Panel);
+				
+				borrowername_txt.setEditable(false);
+				borrowersex_txt.setEditable(false);
+				borrowerphonenumber_txt.setEditable(false);
+				borroweremail_txt.setEditable(false);
+				borroweraddress_textarea.setEditable(false);
+				
+				borrowername_txt.setBackground(Color.WHITE);
+				borrowersex_txt.setBackground(Color.WHITE);
+				borrowerphonenumber_txt.setBackground(Color.WHITE);
+				borroweremail_txt.setBackground(Color.WHITE);
+				borroweraddress_textarea.setBackground(Color.WHITE);
+		}		
+}

@@ -1,0 +1,347 @@
+package libsys.listeners;
+
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.sql.ResultSet;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import libsys.general.BorrowersData;
+import libsys.general.LIBSYSSystem;
+import libsys.general.utilities.FinesPaymentSearchResultsTableModel;
+
+public class FinePaymentBorrowerAccNumberTextBoxListener implements FocusListener
+{
+		LIBSYSSystem LibrarySystem;
+		ResultSet resultSet;
+		
+		public FinePaymentBorrowerAccNumberTextBoxListener(LIBSYSSystem LibrarySystem)
+		{
+				this.LibrarySystem = LibrarySystem;
+		}
+		
+		public void focusLost(FocusEvent fe) 
+		{
+				if(LibrarySystem.DatabaseManager.isConnectedToMySQLServer() == true)
+				{
+						if(LibrarySystem.FrameItems.finesPaymentPanelItems.borroweraccnumber_txt.getText().compareTo("") == 0)
+						{								
+								return;
+						}
+						
+						BorrowersData borrowerData = new BorrowersData();
+						
+						borrowerData.BorrowerAccountNumber = LibrarySystem.FrameItems.finesPaymentPanelItems.borroweraccnumber_txt.getText();
+						
+						if(borrowerData.BorrowerAccountNumber == null || borrowerData.BorrowerAccountNumber.length() == 0)
+						{
+								LibrarySystem.FrameItems.finesPaymentPanelItems.finedetails_scrollpane.setViewportView(null);
+								LibrarySystem.itemDisabler.disableFinePaymentPanelItems();
+								return;
+						}
+						try
+						{					
+								String query = getQuery(borrowerData.BorrowerAccountNumber);
+								
+								resultSet = LibrarySystem.DatabaseManager.executeSelectQuery(query);
+								
+								if(resultSet == null)
+								{
+										return;
+								}
+								
+								if(resultSet.next() == false)
+								{
+										resultSet = LibrarySystem.DatabaseManager.executeSelectQuery("SELECT * FROM Borrowers WHERE B_id = '" + borrowerData.BorrowerAccountNumber + "'");
+										
+										if(resultSet == null)
+										{
+												return;
+										}
+										
+										if(resultSet.next() == false)
+										{
+												JOptionPane.showMessageDialog(LibrarySystem.FrameList.NavigationFrame, "No record exists in the database with Borrower Account number : " + borrowerData.BorrowerAccountNumber);
+												LibrarySystem.FrameItems.finesPaymentPanelItems.finedetails_scrollpane.setViewportView(null);
+												LibrarySystem.itemDisabler.disableFinePaymentPanelItems();
+												LibrarySystem.DatabaseManager.closeConnection();
+												return;
+										}										
+										
+										resultSet = LibrarySystem.DatabaseManager.executeSelectQuery("SELECT * FROM Fines WHERE B_id = '" + borrowerData.BorrowerAccountNumber + "' and Fine_paid = 'Paid'");
+										
+										if(resultSet == null)
+										{
+												return;
+										}
+										
+										if(resultSet.next() == false)
+										{
+												resultSet = LibrarySystem.DatabaseManager.executeSelectQuery("SELECT * FROM Fines WHERE B_id = '" + borrowerData.BorrowerAccountNumber + "'");
+										
+												if(resultSet == null)
+												{
+														return;
+												}
+												
+												if(resultSet.next() == false)
+												{
+														JOptionPane.showMessageDialog(LibrarySystem.FrameList.NavigationFrame, "No fines have been imposed on the borrower with Account Number : " + borrowerData.BorrowerAccountNumber);
+														LibrarySystem.FrameItems.finesPaymentPanelItems.finedetails_scrollpane.setViewportView(null);
+														LibrarySystem.itemDisabler.disableFinePaymentPanelItems();
+														LibrarySystem.DatabaseManager.closeConnection();
+														return;
+												}
+										}									
+										
+										JOptionPane.showMessageDialog(LibrarySystem.FrameList.NavigationFrame, "The borrower with Account Number : " + borrowerData.BorrowerAccountNumber + " has cleared all fines imposed.");
+										LibrarySystem.FrameItems.finesPaymentPanelItems.finedetails_scrollpane.setViewportView(null);
+										LibrarySystem.itemDisabler.disableFinePaymentPanelItems();
+										LibrarySystem.DatabaseManager.closeConnection();					
+										return;
+								}
+								
+								borrowerData.BorrowerAddress=resultSet.getObject(5).toString();
+								borrowerData.BorrowerEMail=resultSet.getObject(3).toString();
+								borrowerData.BorrowerName=resultSet.getObject(2).toString();
+								borrowerData.BorrowerPhone=resultSet.getObject(4).toString();
+								borrowerData.BorrowerSex=resultSet.getObject(6).toString();
+								
+								query="SELECT SUM(Fine_amount) FROM Fines where B_id='"+borrowerData.BorrowerAccountNumber+"' and Fine_paid='Not Paid'";
+								
+															
+								resultSet = LibrarySystem.DatabaseManager.executeSelectQuery(query);
+								
+								if(resultSet == null)
+								{
+										return;
+								}
+								
+								resultSet.next();
+								
+								LibrarySystem.FrameItems.finesPaymentPanelItems.borrowersex_txt.setText(borrowerData.BorrowerSex);
+								LibrarySystem.FrameItems.finesPaymentPanelItems.borrowername_txt.setText(borrowerData.BorrowerName);
+								LibrarySystem.FrameItems.finesPaymentPanelItems.borroweraddress_textarea.setText(borrowerData.BorrowerAddress);
+								LibrarySystem.FrameItems.finesPaymentPanelItems.borrowerphone_txt.setText(borrowerData.BorrowerPhone);
+								LibrarySystem.FrameItems.finesPaymentPanelItems.email_txt.setText(borrowerData.BorrowerEMail);
+								LibrarySystem.FrameItems.finesPaymentPanelItems.fineamount_txt.setText(resultSet.getObject(1).toString());
+								
+								query="SELECT image FROM Images where B_id='"+borrowerData.BorrowerAccountNumber+"'";
+																
+								resultSet=LibrarySystem.DatabaseManager.executeSelectQuery(query);
+								
+								if(resultSet == null)
+								{
+										return;
+								}
+								
+								ImageIcon icon = null;
+								
+								if(resultSet.next())
+								{
+										icon = LibrarySystem.imageManager.createImageIcon(resultSet);
+								}
+								
+								LibrarySystem.imageManager.setImageToLabel(icon, LibrarySystem.FrameItems.finesPaymentPanelItems.imagedestination_label);	
+								
+								query = getFineQuery(borrowerData.BorrowerAccountNumber);
+								 
+								resultSet = LibrarySystem.DatabaseManager.executeSelectQuery(query);
+								
+								if(resultSet == null)
+								{
+										return;
+								}
+								
+								createTable(resultSet);
+								
+								LibrarySystem.DatabaseManager.closeConnection();								
+						}
+						catch(Exception e)
+						{
+								e.printStackTrace();
+						}
+				}
+		}
+		
+		private void createTable(ResultSet resultSet)
+		{
+				LibrarySystem.FrameItems.finesPaymentPanelItems.ResultsTable = new JTable(new FinesPaymentSearchResultsTableModel(resultSet));
+				LibrarySystem.FrameItems.finesPaymentPanelItems.ResultsTable.addMouseListener(LibrarySystem.listeners.myMouseListener);
+				LibrarySystem.FrameItems.finesPaymentPanelItems.ResultsTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+				LibrarySystem.FrameItems.finesPaymentPanelItems.ResultsTable.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+				
+				LibrarySystem.FrameItems.finesPaymentPanelItems.finedetails_scrollpane.setViewportView(LibrarySystem.FrameItems.finesPaymentPanelItems.ResultsTable);
+				
+				LibrarySystem.itemEnabler.enableFinePaymentPanelItems();
+				
+				LibrarySystem.FrameList.NavigationFrame.repaint();
+		}
+		
+		private String getFineQuery(String AccNumber)
+		{
+				String query = "SELECT F.Fine_time, F.B_id, F.Fine_amount,  F.Fine_paid, F.Fine_reason FROM Fines F  WHERE F.B_id = '" + AccNumber+"'  and F.Fine_paid='Not Paid'";
+				
+				
+				return query;
+		}
+		
+		private String getQuery(String Accnumber)
+		{
+				String query ="SELECT * FROM Borrowers B, Fines F  WHERE  F.B_id='"+Accnumber+"' and F.B_id=B.B_id and F.Fine_paid='Not Paid'";
+				
+				return query;
+						
+		}
+		
+		public void focusGained(FocusEvent fe)
+		{
+				
+		}
+		
+		public void refreshTableData()
+		{
+				if(LibrarySystem.FrameItems.finesPaymentPanelItems.borroweraccnumber_txt.getText().compareTo("") == 0)
+				{								
+						return;
+				}
+						
+				BorrowersData borrowerData = new BorrowersData();
+					
+				borrowerData.BorrowerAccountNumber = LibrarySystem.FrameItems.finesPaymentPanelItems.borroweraccnumber_txt.getText();
+					
+				if(borrowerData.BorrowerAccountNumber == null || borrowerData.BorrowerAccountNumber.length() == 0)
+				{
+						LibrarySystem.FrameItems.finesPaymentPanelItems.finedetails_scrollpane.setViewportView(null);
+						LibrarySystem.itemDisabler.disableFinePaymentPanelItems();
+						return;
+				}
+				try
+				{					
+						String query = getQuery(borrowerData.BorrowerAccountNumber);
+						
+						resultSet = LibrarySystem.DatabaseManager.executeSelectQuery(query);
+						
+						if(resultSet == null)
+						{
+								return;
+						}
+								
+						if(resultSet.next() == false)
+						{
+								resultSet = LibrarySystem.DatabaseManager.executeSelectQuery("SELECT * FROM Borrowers WHERE B_id = '" + borrowerData.BorrowerAccountNumber + "'");
+								
+								if(resultSet == null)
+								{
+										return;
+								}
+								
+								if(resultSet.next() == false)
+								{
+										//JOptionPane.showMessageDialog(LibrarySystem.FrameList.NavigationFrame, "No record exists in the database with Borrower Account number : " + borrowerData.BorrowerAccountNumber);
+										LibrarySystem.FrameItems.finesPaymentPanelItems.finedetails_scrollpane.setViewportView(null);
+										LibrarySystem.itemDisabler.disableFinePaymentPanelItems();
+										LibrarySystem.DatabaseManager.closeConnection();
+										return;
+								}
+								
+								resultSet = LibrarySystem.DatabaseManager.executeSelectQuery("SELECT * FROM Fines WHERE B_id = '" + borrowerData.BorrowerAccountNumber + "'");
+								
+								if(resultSet == null)
+								{
+										return;
+								}
+								
+								if(resultSet.next() == false)
+								{
+										//JOptionPane.showMessageDialog(LibrarySystem.FrameList.NavigationFrame, "No fines have been imposed on the borrower with Account Number : " + borrowerData.BorrowerAccountNumber);
+										LibrarySystem.FrameItems.finesPaymentPanelItems.finedetails_scrollpane.setViewportView(null);
+										LibrarySystem.itemDisabler.disableFinePaymentPanelItems();
+										LibrarySystem.DatabaseManager.closeConnection();
+										return;
+								}	
+								
+								resultSet = LibrarySystem.DatabaseManager.executeSelectQuery("SELECT * FROM Fines WHERE B_id = '" + borrowerData.BorrowerAccountNumber + "' and Fine_paid = 'Paid'");
+								
+								if(resultSet == null)
+								{
+										return;
+								}
+								
+								if(resultSet.next() == false)
+								{
+										//JOptionPane.showMessageDialog(LibrarySystem.FrameList.NavigationFrame, "The borrower with Account Number : " + borrowerData.BorrowerAccountNumber + " has cleared all fines imposed.");
+										LibrarySystem.FrameItems.finesPaymentPanelItems.finedetails_scrollpane.setViewportView(null);
+										LibrarySystem.itemDisabler.disableFinePaymentPanelItems();
+										LibrarySystem.DatabaseManager.closeConnection();
+										return;
+								}									
+								
+								return;
+						}
+							
+						borrowerData.BorrowerAddress=resultSet.getObject(5).toString();
+						borrowerData.BorrowerEMail=resultSet.getObject(3).toString();
+						borrowerData.BorrowerName=resultSet.getObject(2).toString();
+						borrowerData.BorrowerPhone=resultSet.getObject(4).toString();
+						borrowerData.BorrowerSex=resultSet.getObject(6).toString();
+						
+						query="SELECT SUM(Fine_amount) FROM Fines where B_id='"+borrowerData.BorrowerAccountNumber+"' and Fine_paid='Not Paid'";
+						
+						resultSet = LibrarySystem.DatabaseManager.executeSelectQuery(query);
+						
+						if(resultSet == null)
+						{
+								return;
+						}
+						
+						if(resultSet.next() == false)
+						{
+								return;
+						}
+						
+						LibrarySystem.FrameItems.finesPaymentPanelItems.borrowersex_txt.setText(borrowerData.BorrowerSex);
+						LibrarySystem.FrameItems.finesPaymentPanelItems.borrowername_txt.setText(borrowerData.BorrowerName);
+						LibrarySystem.FrameItems.finesPaymentPanelItems.borroweraddress_textarea.setText(borrowerData.BorrowerAddress);
+						LibrarySystem.FrameItems.finesPaymentPanelItems.borrowerphone_txt.setText(borrowerData.BorrowerPhone);
+						LibrarySystem.FrameItems.finesPaymentPanelItems.email_txt.setText(borrowerData.BorrowerEMail);
+						LibrarySystem.FrameItems.finesPaymentPanelItems.fineamount_txt.setText(resultSet.getObject(1).toString());
+							
+						query="SELECT image FROM Images where B_id='"+borrowerData.BorrowerAccountNumber+"'";
+														
+						resultSet=LibrarySystem.DatabaseManager.executeSelectQuery(query);
+						
+						if(resultSet == null)
+						{
+								return;
+						}
+						
+						ImageIcon icon = null;
+								
+						if(resultSet.next())
+						{
+								icon = LibrarySystem.imageManager.createImageIcon(resultSet);
+						}
+								
+						LibrarySystem.imageManager.setImageToLabel(icon, LibrarySystem.FrameItems.finesPaymentPanelItems.imagedestination_label);	
+								
+						query = getQuery(borrowerData.BorrowerAccountNumber);
+								 
+						resultSet = LibrarySystem.DatabaseManager.executeSelectQuery(query);
+								
+						if(resultSet == null)
+						{
+								return;
+						}
+								
+						createTable(resultSet);
+							
+						LibrarySystem.DatabaseManager.closeConnection();								
+				}
+				catch(Exception e)
+				{
+						e.printStackTrace();
+				}
+		}
+}

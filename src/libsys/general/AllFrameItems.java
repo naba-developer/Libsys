@@ -1,0 +1,151 @@
+package libsys.general;
+
+import libsys.gui.items.AboutFrameItems;
+import libsys.gui.items.AccountRegistrationFrameItems;
+import libsys.gui.items.AccountRegistrationPanelItems;
+import libsys.gui.items.AccountsManagerFrameItems;
+import libsys.gui.items.AddAccountPanelItems;
+import libsys.gui.items.AllBooksPanelItems;
+import libsys.gui.items.AllBorrowersPanelItems;
+import libsys.gui.items.AllFinesPanelItems;
+import libsys.gui.items.BorrowerRecordsPanelItems;
+import libsys.gui.items.BorrowingPanelItems;
+import libsys.gui.items.CalculatorFrameItems;
+import libsys.gui.items.ChangeColorPanelItems;
+import libsys.gui.items.CurrentTransactionsPanelItems;
+import libsys.gui.items.CustomDateRangePanelItems;
+import libsys.gui.items.DeleteBooksPanelItems;
+import libsys.gui.items.DeleteBorrowersPanelItems;
+import libsys.gui.items.EditAccountPanelItems;
+import libsys.gui.items.FinesImposePanelItems;
+import libsys.gui.items.FinesPaymentPanelItems;
+import libsys.gui.items.InsertBooksPanelItems;
+import libsys.gui.items.InsertBorrowersPanelItems;
+import libsys.gui.items.LoginFrameItems;
+import libsys.gui.items.MySQLFrameItems;
+import libsys.gui.items.NavigationFrameItems;
+import libsys.gui.items.PrintPreviewFrameItems;
+import libsys.gui.items.QueryBrowserPanelItems;
+import libsys.gui.items.ReturnPanelItems;
+import libsys.gui.items.SearchBooksPanelItems;
+import libsys.gui.items.SearchBorrowerPanelItems;
+import libsys.gui.items.SettingsFontsAndColorsPanelItems;
+import libsys.gui.items.SettingsFrameItems;
+import libsys.gui.items.SettingsInterfacePanelItems;
+import libsys.gui.items.SettingsLibrarySettingsPanelItems;
+import libsys.gui.items.SpecificDatePanelItems;
+import libsys.gui.items.SpecificMonthPanelItems;
+import libsys.gui.items.SpecificYearPanelItems;
+import libsys.gui.items.SystemLogPanelItems;
+import libsys.gui.items.TransactionPanelItems;
+import libsys.gui.items.UpdateBooksPanelItems;
+import libsys.gui.items.UpdateBorrowersPanelItems;
+import libsys.gui.items.DeleteAccountPanelItems;
+
+public class AllFrameItems
+{
+		public LoginFrameItems loginFrameItems;
+		public NavigationFrameItems navigationFrameItems;
+		public CalculatorFrameItems calculatorFrameItems;
+		public SettingsFrameItems settingsFrameItems;
+		public AccountsManagerFrameItems accountsManagerFrameItems;
+		public AccountRegistrationFrameItems AccountRegistrationFrameItems;
+		public MySQLFrameItems mysqlFrameItems;
+		
+		public BorrowingPanelItems borrowingPanelItems;
+		public ReturnPanelItems returnPanelItems;	
+		
+		public SettingsFontsAndColorsPanelItems settingsFontsAndColorsPanelItems;
+		public SettingsLibrarySettingsPanelItems settingsLibrarySettingsPanelItems;
+		
+		public QueryBrowserPanelItems queryBrowserPanelItems;
+		
+		public ChangeColorPanelItems changeColorPanelItems;
+		
+		public SearchBooksPanelItems searchBooksPanelItems;
+		public SearchBorrowerPanelItems searchBorrowerPanelItems;
+		
+		public FinesPaymentPanelItems finesPaymentPanelItems;
+		public  FinesImposePanelItems finesImposePanelItems;
+		
+		public UpdateBooksPanelItems updateBooksPanelItems;
+		public UpdateBorrowersPanelItems updateBorrowerPanelItems;
+		
+		public InsertBooksPanelItems insertBooksPanelItems;
+		public InsertBorrowersPanelItems insertBorrowersPanelItems;
+		
+		public AccountRegistrationPanelItems accountRegistrationPanelItems;
+		public AddAccountPanelItems addAccountPanelItems;
+		public EditAccountPanelItems editAccountPanelItems;
+		public DeleteAccountPanelItems deleteUserAccountPanelItems;
+		
+		public DeleteBooksPanelItems deleteBooksPanelItems;
+		public DeleteBorrowersPanelItems deleteBorrowersPanelItems;
+		
+		public SystemLogPanelItems systemLogPanelItems;
+		
+		public TransactionPanelItems transactionPanelItems;
+		
+		public SpecificDatePanelItems specificDatePanelItems;
+		public SpecificMonthPanelItems specificMonthPanelItems;
+		public SpecificYearPanelItems specificYearPanelItems;
+		public CustomDateRangePanelItems customDateRangePanelItems;
+		public CurrentTransactionsPanelItems currentTransactionPanelItems;
+		
+		public AllFinesPanelItems allFinesPanelItems;
+		public AllBooksPanelItems allBooksPanelItems;
+		public AllBorrowersPanelItems allBorrowersPanelItems;
+		
+		public BorrowerRecordsPanelItems borrowerRecordsPanelItems;
+		
+		public PrintPreviewFrameItems printPreviewFrameItems;
+		
+		public SettingsInterfacePanelItems settingsInterfacePanelItems;
+		
+		public AboutFrameItems aboutFrameItems;
+		
+		public AllFrameItems()
+		{
+				loginFrameItems = new LoginFrameItems();
+				navigationFrameItems = new NavigationFrameItems();
+				accountsManagerFrameItems = new AccountsManagerFrameItems();
+				borrowingPanelItems = new BorrowingPanelItems();
+				returnPanelItems = new ReturnPanelItems();
+				settingsFontsAndColorsPanelItems = new SettingsFontsAndColorsPanelItems();
+				calculatorFrameItems = new CalculatorFrameItems();
+				settingsFrameItems = new SettingsFrameItems();
+				queryBrowserPanelItems = new QueryBrowserPanelItems();
+				changeColorPanelItems = new ChangeColorPanelItems();
+				searchBooksPanelItems = new SearchBooksPanelItems();
+				finesPaymentPanelItems = new FinesPaymentPanelItems();
+				finesImposePanelItems = new FinesImposePanelItems();
+				updateBooksPanelItems = new UpdateBooksPanelItems();
+				insertBooksPanelItems = new InsertBooksPanelItems();
+				insertBorrowersPanelItems = new InsertBorrowersPanelItems();
+				addAccountPanelItems = new AddAccountPanelItems();
+				editAccountPanelItems = new EditAccountPanelItems();
+				deleteUserAccountPanelItems = new DeleteAccountPanelItems();
+				searchBorrowerPanelItems = new SearchBorrowerPanelItems();
+				updateBorrowerPanelItems = new UpdateBorrowersPanelItems();
+				deleteBooksPanelItems = new DeleteBooksPanelItems();
+				deleteBorrowersPanelItems = new DeleteBorrowersPanelItems();
+				systemLogPanelItems = new SystemLogPanelItems();
+				transactionPanelItems = new TransactionPanelItems();
+				specificDatePanelItems = new SpecificDatePanelItems();
+				specificMonthPanelItems = new SpecificMonthPanelItems();
+				specificYearPanelItems = new SpecificYearPanelItems();
+				customDateRangePanelItems = new CustomDateRangePanelItems();
+				currentTransactionPanelItems = new CurrentTransactionsPanelItems();
+				allFinesPanelItems = new AllFinesPanelItems();
+				allBooksPanelItems = new AllBooksPanelItems();
+				allBorrowersPanelItems = new AllBorrowersPanelItems();
+				settingsLibrarySettingsPanelItems = new SettingsLibrarySettingsPanelItems();
+				accountRegistrationPanelItems = new AccountRegistrationPanelItems();
+				AccountRegistrationFrameItems = new AccountRegistrationFrameItems();
+				borrowerRecordsPanelItems = new BorrowerRecordsPanelItems();		
+				mysqlFrameItems = new MySQLFrameItems();
+				printPreviewFrameItems = new PrintPreviewFrameItems();
+				settingsInterfacePanelItems = new SettingsInterfacePanelItems();
+				aboutFrameItems = new AboutFrameItems();
+		}
+}

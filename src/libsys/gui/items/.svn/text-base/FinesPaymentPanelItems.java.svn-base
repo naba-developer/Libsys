@@ -1,0 +1,116 @@
+package libsys.gui.items;
+
+import java.awt.Color;
+import javax.swing.JTable;
+
+public class FinesPaymentPanelItems 
+{
+		public javax.swing.JLabel borroweraccnumber_label;
+                public javax.swing.JTextField borroweraccnumber_txt;
+                public javax.swing.JLabel borroweraddress_label;
+                public javax.swing.JTextArea borroweraddress_textarea;
+                public javax.swing.JScrollPane borroweraddresstextarea_scrollpane;
+                public javax.swing.JLabel borroweremail_label;
+                public javax.swing.JLabel borrowername_label;
+                public javax.swing.JTextField borrowername_txt;
+                public javax.swing.JLabel borrowerphone_label;
+                public javax.swing.JTextField borrowerphone_txt;
+                public javax.swing.JLabel borrowersex_label;
+                public javax.swing.JTextField borrowersex_txt;
+                public javax.swing.JTextField email_txt;
+                public javax.swing.JLabel fineamount_label;
+                public javax.swing.JTextField fineamount_txt;
+                public javax.swing.JLabel finedetails_label;
+                public javax.swing.JScrollPane finedetails_scrollpane;
+                public javax.swing.JButton finedetailsprint_btn;
+                public javax.swing.JPanel finespayment_panel;
+                public javax.swing.JScrollPane finespayment_scrollpane;
+                public javax.swing.JLabel imagedestination_label;
+                public javax.swing.JButton payfine_btn;
+                public javax.swing.JButton print_btn;
+                public javax.swing.JPanel searchresults_panel;
+		
+		public JTable ResultsTable;
+		
+		public FinesPaymentPanelItems() 
+		{
+				finespayment_scrollpane = new javax.swing.JScrollPane();
+                                finespayment_panel = new javax.swing.JPanel();
+                                borroweraccnumber_label = new javax.swing.JLabel();
+                                borroweraccnumber_txt = new javax.swing.JTextField();
+                                borrowername_label = new javax.swing.JLabel();
+                                borrowername_txt = new javax.swing.JTextField();
+                                borrowersex_label = new javax.swing.JLabel();
+                                borrowersex_txt = new javax.swing.JTextField();
+                                borrowerphone_label = new javax.swing.JLabel();
+                                borrowerphone_txt = new javax.swing.JTextField();
+                                borroweremail_label = new javax.swing.JLabel();
+                                email_txt = new javax.swing.JTextField();
+                                borroweraddress_label = new javax.swing.JLabel();
+                                borroweraddresstextarea_scrollpane = new javax.swing.JScrollPane();
+                                borroweraddress_textarea = new javax.swing.JTextArea();
+                                fineamount_label = new javax.swing.JLabel();
+                                fineamount_txt = new javax.swing.JTextField();
+                                imagedestination_label = new javax.swing.JLabel();
+                                searchresults_panel = new javax.swing.JPanel();
+                                finedetails_label = new javax.swing.JLabel();
+                                finedetailsprint_btn = new javax.swing.JButton();
+                                finedetails_scrollpane = new javax.swing.JScrollPane();
+                                payfine_btn = new javax.swing.JButton();
+                                print_btn = new javax.swing.JButton();
+
+                                finespayment_panel.setBackground(new java.awt.Color(204, 204, 255));
+
+                                borroweraccnumber_label.setText("Enter the Borrower Account Number :");
+
+                                borrowername_label.setText("Borrower Name :");
+
+                                borrowername_txt.setEditable(false);
+				borrowername_txt.setBackground(Color.WHITE);
+				
+                                borrowersex_label.setText("Sex :");
+
+                                borrowersex_txt.setEditable(false);
+				borrowersex_txt.setBackground(Color.WHITE);
+				
+                                borrowerphone_label.setText("Phone Number :");
+
+                                borrowerphone_txt.setEditable(false);
+				borrowerphone_txt.setBackground(Color.WHITE);
+				
+                                borroweremail_label.setText("E-Mail :");
+
+                                email_txt.setEditable(false);
+				email_txt.setBackground(Color.WHITE);
+				
+                                borroweraddress_label.setText("Address :");
+
+                                borroweraddress_textarea.setColumns(20);
+                                borroweraddress_textarea.setEditable(false);
+				borroweraddress_textarea.setBackground(Color.WHITE);
+                                borroweraddress_textarea.setRows(5);
+                                borroweraddress_textarea.setAutoscrolls(false);
+                                borroweraddresstextarea_scrollpane.setViewportView(borroweraddress_textarea);
+
+                                fineamount_label.setText("Total Fine Amount :");
+
+                                fineamount_txt.setEditable(false);
+				fineamount_txt.setBackground(Color.WHITE);
+
+                                imagedestination_label.setToolTipText("Image of the Borrower");
+                                imagedestination_label.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+                                searchresults_panel.setBackground(new java.awt.Color(153, 153, 255));
+
+                                finedetails_label.setText("Fine Details :");
+
+                                finedetailsprint_btn.setText("Print Fine Details");
+				
+				payfine_btn.setText("Pay Fine");
+
+                                print_btn.setText("Print Payment");
+				
+				finespayment_scrollpane.setViewportView(finespayment_panel);
+		}
+		
+}

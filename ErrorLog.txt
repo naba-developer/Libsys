@@ -1,0 +1,354 @@
+
+
+Error occurred at : Tue Sep 08 00:23:25 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:23:25 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:23:25 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:23:25 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:23:25 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:23:25 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:23:26 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:23:26 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:25:01 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:25:01 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:25:01 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:25:01 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:25:01 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:25:01 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:25:01 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:25:01 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:30:52 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:30:52 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:30:52 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:30:52 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:30:52 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:30:52 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:30:53 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:30:53 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:32:35 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:32:35 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:32:35 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:32:35 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:32:35 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:32:35 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:32:35 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:32:35 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:35:29 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:35:29 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:35:29 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:35:29 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:35:29 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:35:29 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:35:29 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:35:29 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:37:26 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:37:26 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:37:26 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:37:26 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:37:26 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:37:26 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:37:26 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:37:26 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:39:20 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:39:20 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:39:20 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:39:20 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:39:20 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:39:20 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:39:20 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:39:20 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 00:39:20 IST 2009 during session by user : 1
+java.lang.NullPointerException
+
+
+
+Error occurred at : Tue Sep 08 02:20:08 IST 2009 during session by user : 1
+com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+Last packet sent to the server was 0 ms ago.
+
+
+
+Error occurred at : Tue Sep 08 02:20:18 IST 2009 during session by user : 1
+com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+Last packet sent to the server was 0 ms ago.
+
+
+
+Error occurred at : Tue Sep 08 18:41:23 IST 2009 during session by user : 1
+com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+Last packet sent to the server was 0 ms ago.
+
+
+
+Error occurred at : Tue Sep 08 18:41:27 IST 2009 during session by user : 1
+com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+Last packet sent to the server was 0 ms ago.
+
+
+
+Error occurred at : Tue Sep 08 19:27:59 IST 2009 during session by user : 1
+com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+Last packet sent to the server was 0 ms ago.
+
+
+
+Error occurred at : Mon Sep 21 00:32:35 IST 2009 during session by user : 1
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+
+
+
+Error occurred at : Mon Sep 21 00:32:45 IST 2009 during session by user : 1
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+
+
+
+Error occurred at : Mon Sep 21 00:33:15 IST 2009 during session by user : 1
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+
+
+
+Error occurred at : Sat Nov 21 23:53:33 IST 2009 during session by user : 1
+com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+Last packet sent to the server was 0 ms ago.
+
+
+
+Error occurred at : Fri Nov 05 02:17:35 IST 2010 during session by user : 1
+com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+Last packet sent to the server was 0 ms ago.
+
+
+
+Error occurred at : Tue Oct 16 11:52:19 PDT 2012 during session by user : 1
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown database 'libsys'
+

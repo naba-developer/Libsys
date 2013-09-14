@@ -1,0 +1,56 @@
+package libsys.general.utilities;
+
+import libsys.general.LIBSYSSystem;
+ 
+
+public class DataFormatter
+{
+		LIBSYSSystem LibrarySystem;
+		
+		String text;
+		
+		public DataFormatter(LIBSYSSystem LibrarySystem) 
+		{
+				this.LibrarySystem = LibrarySystem;
+		}
+		
+		public String getFormattedBorrowingItems()
+		{
+				text="&nbsp&nbsp&nbsp&nbsp Book borrowed on date: "+LibrarySystem.FrameItems.borrowingPanelItems.bookborrowdate_btn.getText()+"<BR><BR>";
+				text = text + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Book Details :<BR><BR>";
+				text = text + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Book Account Number : "+LibrarySystem.FrameItems.borrowingPanelItems.bookaccnumber_txt.getText()+"<BR>";
+				text = text + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Book Title : "+LibrarySystem.FrameItems.borrowingPanelItems.booktitle_txt.getText()+"<BR>";
+				text = text + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Book Author : "+LibrarySystem.FrameItems.borrowingPanelItems.bookauthor_txt.getText()+"<BR>";
+				text = text + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Book Publisher : "+LibrarySystem.FrameItems.borrowingPanelItems.bookpublisher_txt.getText()+"<BR>";
+				text = text + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Book Edition : "+LibrarySystem.FrameItems.borrowingPanelItems.bookedition_txt.getText()+"<BR>";
+				text = text + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Book Price : "+LibrarySystem.FrameItems.borrowingPanelItems.bookprice_txt.getText()+"<BR><BR>";
+				text = text + "&nbsp&nbsp&nbsp&nbsp Borrower Details :<BR><BR> ";
+				text = text + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Borrower Account Number : "+LibrarySystem.FrameItems.borrowingPanelItems.borroweraccnumber_txt.getText()+"<BR>";
+				text = text + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Borrower Name : "+LibrarySystem.FrameItems.borrowingPanelItems.borrowername_txt.getText()+"<BR>";
+				text = text + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Borrower Sex : "+LibrarySystem.FrameItems.borrowingPanelItems.borrowersex_txt.getText()+"<BR>";
+				text = text + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Borrower Phone Number : "+LibrarySystem.FrameItems.borrowingPanelItems.borrowerphone_txt.getText()+"<BR>";
+				text = text + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Borrower Email : "+LibrarySystem.FrameItems.borrowingPanelItems.email_txt.getText()+"<BR>";
+				text = text + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Borrower Address : "+LibrarySystem.FrameItems.borrowingPanelItems.borroweraddress_textarea.getText()+"<BR><BR>";
+				text = text + "&nbsp&nbsp&nbsp&nbsp Due date for book : "+LibrarySystem.FrameItems.borrowingPanelItems.bookduedate_btn.getText();
+				
+				return text;
+		}
+		
+		public String getHTMLFormattedData(String header, String footer, String body)
+		{
+				int BodyFontSize = Integer.parseInt(LibrarySystem.settingsManager.getSettings(LibrarySystem.SettingsFile, 12));
+				String BodyFontFace = LibrarySystem.settingsManager.getSettings(LibrarySystem.SettingsFile, 8);
+				
+				String fr = Integer.toHexString(Integer.parseInt(LibrarySystem.settingsManager.getSettings(LibrarySystem.SettingsFile, 9)));
+				String fg = Integer.toHexString(Integer.parseInt(LibrarySystem.settingsManager.getSettings(LibrarySystem.SettingsFile, 10)));
+				String fb = Integer.toHexString(Integer.parseInt(LibrarySystem.settingsManager.getSettings(LibrarySystem.SettingsFile, 11)));
+				
+				String head = "<html><body FONT SIZE = \"" + BodyFontSize + "\" FACE = \"" + BodyFontFace + "\" COLOR = \"#" + fr + fg + fb + "\">";
+				
+				head = head + "<center><h1>" + header + "<h1></center><br><br><br><p align = left>";			
+				
+				String foot = "</p><br><br><center><h4>" + footer + "</h4></center></body></html>";
+				
+				return head + body + foot;
+		}
+}
